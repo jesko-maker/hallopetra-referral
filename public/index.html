@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Betrieb empfehlen – HalloPetra</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #eef2fb;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(30,70,160,0.1);
+    }
+
+    .petra-header {
+      background: linear-gradient(135deg, #2d4f7c 0%, #1a3356 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-top: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .petra-header img {
+      width: 170px;
+      height: 170px;
+      object-fit: contain;
+      object-position: center bottom;
+      display: block;
+    }
+
+    .petra-header-text {
+      padding-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .petra-header-text .tagline {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7eb3ff;
+      margin-bottom: 0.35rem;
+    }
+
+    .petra-header-text h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #fff;
+    }
+
+    .card-body { padding: 1.75rem 2rem 2rem; }
+
+    .badge {
+      display: inline-block;
+      background: #eff4ff;
+      color: #2d4f7c;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .incentive {
+      background: #eff4ff;
+      border-left: 3px solid #2d4f7c;
+      border-radius: 0 8px 8px 0;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      color: #2d4f7c;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #ebebeb;
+      margin: 1.5rem 0;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #2d4f7c;
+      margin-bottom: 1rem;
+    }
+
+    .field { margin-bottom: 1.1rem; }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #333;
+    }
+
+    label .required { color: #e04a4a; margin-left: 2px; }
+    label .opt { color: #aaa; font-weight: 400; font-size: 0.8rem; margin-left: 4px; }
+
+    input {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: #fafafa;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #2d4f7c;
+      box-shadow: 0 0 0 3px rgba(45,79,124,0.1);
+      background: #fff;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.85rem;
+      background: #2d4f7c;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 0.5rem;
+    }
+
+    button:hover { background: #1a3356; }
+    button:active { transform: scale(0.99); }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .footer-note {
+      font-size: 0.78rem;
+      color: #aaa;
+      text-align: center;
+      margin-top: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .success {
+      display: none;
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+
+    .success .check { font-size: 3rem; margin-bottom: 1rem; }
+    .success h2 { font-size: 1.3rem; margin-bottom: 0.5rem; color: #1a1a1a; }
+    .success p { color: #555; font-size: 0.9rem; line-height: 1.6; }
+
+    .error-msg {
+      display: none;
+      background: #fff0f0;
+      border: 1.5px solid #f5c2c2;
+      color: #c0392b;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="petra-header">
+      <img src="petra.png" alt="Petra" />
+      <div class="petra-header-text">
+        <p class="tagline">HalloPetra</p>
+        <h1>Einen Betrieb<br>empfehlen.</h1>
+      </div>
+    </div>
+
+    <div class="success" id="success">
+      <div class="check">✅</div>
+      <h2>Empfehlung eingegangen!</h2>
+      <p>Wir haben dem empfohlenen Betrieb eine E-Mail mit einem Demo-Link geschickt. Du bekommst gleich eine Bestätigung.</p>
+    </div>
+
+    <div id="form-wrapper">
+      <div class="card-body">
+        <span class="badge">Empfehlungsprogramm</span>
+        <p class="subtitle">Kennt ihr einen Handwerksbetrieb, dem Petra helfen würde? Tragt ihn hier ein und wir melden uns direkt mit einem Demo-Link.</p>
+
+        <div class="incentive">
+          Für jeden Betrieb, den ihr empfehlt und der Kunde wird, bekommt ihr das WhatsApp-Feature kostenlos.
+        </div>
+
+        <p class="section-label">Eure Daten</p>
+
+        <form id="referral-form">
+          <div class="field">
+            <label for="referrer_name">Name <span class="required">*</span></label>
+            <input type="text" id="referrer_name" name="referrer_name" placeholder="Max Mustermann" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="referrer_company">Euer Betrieb <span class="opt">(optional)</span></label>
+            <input type="text" id="referrer_company" name="referrer_company" placeholder="Mustermann Sanitär GmbH" autocomplete="organization" />
+          </div>
+          <div class="field">
+            <label for="referrer_email">Eure E-Mail <span class="required">*</span></label>
+            <input type="email" id="referrer_email" name="referrer_email" placeholder="max@mustermann-sanitaer.de" required autocomplete="email" />
+          </div>
+
+          <hr class="divider" />
+          <p class="section-label">Wen empfehlt ihr?</p>
+
+          <div class="field">
+            <label for="lead_name">Ansprechpartner <span class="required">*</span></label>
+            <input type="text" id="lead_name" name="lead_name" placeholder="Anna Beispiel" required />
+          </div>
+          <div class="field">
+            <label for="lead_company">Betrieb <span class="required">*</span></label>
+            <input type="text" id="lead_company" name="lead_company" placeholder="Beispiel Elektro GmbH" required />
+          </div>
+          <div class="field">
+            <label for="lead_email">E-Mail-Adresse <span class="required">*</span></label>
+            <input type="email" id="lead_email" name="lead_email" placeholder="anna@beispiel-elektro.de" required />
+          </div>
+          <div class="field">
+            <label for="lead_phone">Telefon <span class="opt">(optional)</span></label>
+            <input type="tel" id="lead_phone" name="lead_phone" placeholder="+49 30 123456" autocomplete="tel" />
+          </div>
+
+          <button type="submit" id="submit-btn">Empfehlung absenden →</button>
+          <div class="error-msg" id="error-msg">Etwas hat nicht geklappt. Bitte versucht es erneut.</div>
+        </form>
+
+        <p class="footer-note">Der empfohlene Betrieb bekommt eine E-Mail von uns mit einem Link zur Demo-Buchung.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('referral-form');
+    const wrapper = document.getElementById('form-wrapper');
+    const success = document.getElementById('success');
+    const btn = document.getElementById('submit-btn');
+    const errorMsg = document.getElementById('error-msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.textContent = 'Wird gesendet...';
+      btn.disabled = true;
+      errorMsg.style.display = 'none';
+
+      const data = {
+        referrer_name:    form.referrer_name.value.trim(),
+        referrer_email:   form.referrer_email.value.trim(),
+        referrer_company: form.referrer_company.value.trim(),
+        lead_name:        form.lead_name.value.trim(),
+        lead_company:     form.lead_company.value.trim(),
+        lead_email:       form.lead_email.value.trim(),
+        lead_phone:       form.lead_phone.value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/referral', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          wrapper.style.display = 'none';
+          success.style.display = 'block';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.textContent = 'Empfehlung absenden →';
+        btn.disabled = false;
+        errorMsg.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
