@@ -22,6 +22,13 @@ app.post('/api/referral', async (req, res) => {
   const FROM_EMAIL = process.env.FROM_EMAIL || 'info@hallopetra.de';
   const NOTIFY_MAIL = process.env.NOTIFY_EMAIL || 'jesko@hallopetra.de';
 
+  console.log('[referral] env check — API_KEY set:', !!API_KEY, '| API_SECRET set:', !!API_SECRET, '| FROM_EMAIL:', FROM_EMAIL, '| NOTIFY_MAIL:', NOTIFY_MAIL);
+
+  if (!API_KEY || !API_SECRET) {
+    console.error('[referral] MAILJET credentials missing');
+    return res.status(500).json({ error: 'Mailjet-Konfiguration fehlt' });
+  }
+
   const auth = Buffer.from(`${API_KEY}:${API_SECRET}`).toString('base64');
 
   const leadHtml = `
@@ -146,15 +153,25 @@ Demo-Link wurde an ${lead_email} gesendet.
     });
 
     const data = await response.json();
+    console.log('[referral] Mailjet status:', response.status, '| body:', JSON.stringify(data));
+
     if (!response.ok) {
-      console.error('Mailjet error:', data);
-      return res.status(500).json({ error: 'E-Mail konnte nicht gesendet werden' });
+      console.error('[referral] Mailjet error response:', JSON.stringify(data));
+      return res.status(500).json({ error: 'E-Mail konnte nicht gesendet werden', detail: data });
     }
 
+    // Check per-message errors even on 200
+    const failed = (data.Messages || []).filter(m => m.Status !== 'success');
+    if (failed.length > 0) {
+      console.error('[referral] Some messages failed:', JSON.stringify(failed));
+      return res.status(500).json({ error: 'Teilweise fehlgeschlagen', detail: failed });
+    }
+
+    console.log('[referral] All messages sent successfully');
     res.json({ success: true });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Serverfehler' });
+    console.error('[referral] Exception:', err.message, err.stack);
+    res.status(500).json({ error: 'Serverfehler', detail: err.message });
   }
 });
 
