@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HalloPetra Newsletter – Feature-Mai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; padding: 0; background: #f0f4f8; font-family: Inter, Arial, Helvetica, sans-serif; }
+    .outer { max-width: 600px; margin: 0 auto; padding: 20px 0 32px; }
+
+    /* Cards */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 1px 16px 0 rgba(0,0,0,0.04), 0 1px 8px 0 rgba(0,0,0,0.04);
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .card-dark {
+      background: #2d4f7c;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .gap { height: 8px; }
+
+    /* Card body */
+    .card-body { padding: 36px 40px; }
+    .card-body-wide { padding: 40px 40px 24px 40px; }
+
+    /* Labels */
+    .label {
+      text-align: center;
+      color: #2d4f7c;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin: 0 0 6px 0;
+    }
+
+    /* Headings */
+    h1.main { text-align: center; color: #1b1b1b; font-size: 26px; line-height: 34px; font-weight: 700; margin: 0 0 4px 0; }
+    h1.feature { text-align: center; color: #1b1b1b; font-size: 30px; line-height: 38px; font-weight: 800; margin: 0 0 4px 0; }
+    h2.section { text-align: center; color: #1b1b1b; font-size: 22px; line-height: 30px; font-weight: 700; margin: 0 0 8px 0; }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 0;
+      border: none;
+      border-top: 3px solid #2d4f7c;
+      margin: 12px auto 20px auto;
+      display: block;
+    }
+    .divider-tall { margin: 16px auto 24px auto; }
+
+    /* Body text */
+    p.body-text {
+      text-align: center;
+      color: #4a4a4a;
+      font-size: 15px;
+      line-height: 26px;
+      margin: 0 0 12px 0;
+      padding: 0 10px;
+    }
+
+    /* Icon list */
+    .icon-list { width: 100%; border-collapse: collapse; padding: 0 10px; }
+    .icon-list td { vertical-align: top; padding: 10px 0; }
+    .icon-cell { width: 32px; padding-right: 14px !important; font-size: 18px; }
+    .icon-text { color: #4a4a4a; font-size: 15px; line-height: 24px; }
+
+    /* CTA Button */
+    .cta-wrap { text-align: center; padding: 24px 0 0 0; }
+    .cta {
+      display: inline-block;
+      background: #2d4f7c;
+      color: #fff;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 8px;
+    }
+
+    /* Pricing box */
+    .pricing-box {
+      background: #f0f4f8;
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-align: center;
+      margin: 16px 10px 0 10px;
+    }
+    .price-big { color: #1b1b1b; font-size: 28px; font-weight: 700; line-height: 1.2; }
+    .price-sub { color: #6b7280; font-size: 13px; margin: 4px 0 0 0; }
+    .price-note { color: #9ca3af; font-size: 13px; margin: 6px 0 0 0; }
+
+    /* Dark footer card */
+    .footer-body { padding: 48px 40px; text-align: center; }
+    .footer-body h2 { color: #fff; font-size: 22px; line-height: 30px; font-weight: 700; margin: 0 0 8px 0; }
+    .footer-body p { color: rgba(255,255,255,0.8); font-size: 15px; line-height: 24px; margin: 0; }
+
+    /* Bottom footer */
+    .bottom-footer { padding: 24px 20px 8px; text-align: center; }
+    .bottom-footer p { color: #6b7280; font-size: 13px; line-height: 22px; margin: 0 0 8px 0; }
+    .bottom-footer .unsubscribe { color: #9ca3af; font-size: 11px; line-height: 20px; margin: 0; }
+    .instagram-wrap { text-align: center; padding: 0 0 12px 0; }
+    .instagram-icon {
+      display: inline-block;
+      background: #2d4f7c;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      line-height: 38px;
+      font-size: 18px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div class="outer">
+
+  <!-- Hero HTML -->
+  <div class="card" style="margin-bottom:8px;">
+    <div style="background: #4e72a8; border-radius: 16px 16px 0 0; padding: 28px 32px 24px 32px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; min-height: 160px;">
+      <!-- Left: Text -->
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <p style="display:inline-block; color: rgba(255,255,255,0.85); font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; margin: 0 0 16px 0; font-family: Inter, sans-serif; border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 10px;">Der HalloPetra Newsletter</p>
+          <h1 style="color: #fff; font-size: 52px; font-weight: 800; margin: 0 0 10px 0; line-height: 1; font-family: Inter, sans-serif;">Feature-Mai</h1>
+          <p style="color: rgba(255,255,255,0.75); font-size: 13px; line-height: 19px; margin: 0; font-family: Inter, sans-serif;">Jeden Mittwoch ein neues Feature.<br>Was bei HalloPetra wirklich passiert.</p>
+        </div>
+        <p style="color: rgba(255,255,255,0.6); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin: 20px 0 0 0; font-family: Inter, sans-serif;">Ausgabe #2 · KW 18 · Mai 2026</p>
+      </div>
+      <!-- Right: Petra Avatar with badge -->
+      <div style="position: relative; flex-shrink: 0; margin-top: 4px;">
+        <div style="width: 130px; height: 130px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.9); overflow: hidden;">
+          <img src="https://framerusercontent.com/images/wD5sulqIEBeqaadHq8mrgRoqziI.png"
+               alt="Petra"
+               style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+        <div style="position: absolute; bottom: 6px; right: -4px; background: #fff; color: #2d4f7c; font-size: 12px; font-weight: 800; font-family: Inter, sans-serif; border-radius: 20px; padding: 4px 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+          🗞 #02
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- Intro Card -->
+  <div class="card">
+    <div class="card-body">
+      <p class="label">Ausgabe #2 · Feature-Mai · KW 18 · 2026</p>
+      <h1 class="main">Vier Wochen. Vier Features.</h1>
+      <hr class="divider">
+      <p class="body-text">Hallo [Vorname],</p>
+      <p class="body-text">ein Betrieb hat es neulich so gesagt: "Ihr denkt KI im Handwerk gnadenlos zuende."</p>
+      <p class="body-text">Das war und ist unser Anspruch.</p>
+      <p class="body-text">Die letzten Monate haben wir intensiv an Petra gearbeitet, vor allem an den eingehenden Anrufen. Jeder Anruf besser erkannt, jede Situation sauberer gelöst, jede Rückmeldung eingebaut. Petra telefoniert heute deutlich besser als noch vor einem halben Jahr.</p>
+      <p class="body-text" style="margin:0;">Im Mai geben wir Petra vier neue Fähigkeiten. Jeden Mittwoch stellen wir euch eine davon vor. Die nächsten Features werden wir wieder selektiv freigeben, also lohnt es sich, schnell zu sein.</p>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- Feature Card -->
+  <div class="card">
+    <div class="card-body-wide">
+      <!-- WhatsApp Logo + Label -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="12" fill="#25D366"/>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/>
+        </svg>
+        <p class="label" style="margin:0;">Neu · Feature #1</p>
+      </div>
+      <h1 class="feature">Petra in der Hosentasche</h1>
+      <hr class="divider divider-tall">
+      <p class="body-text">Die Beta ist abgeschlossen. Petra auf WhatsApp ist ab sofort für alle Kunden verfügbar.</p>
+      <p class="body-text">Kein Login, keine App, kein Umweg. Schreibt Petra einfach, wie ihr jedem anderen Mitarbeiter schreiben würdet.</p>
+      <!-- GIF Mockup -->
+      <div style="text-align:center;padding:16px 0 8px 0;">
+        <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/whatsapp-mockup.gif" alt="WhatsApp mit Petra" style="display:inline-block;width:100%;max-width:320px;height:auto;border-radius:12px;">
+      </div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- Use Cases Card -->
+  <div class="card">
+    <div class="card-body">
+      <p class="label">Was geht</p>
+      <h2 class="section">Alles, was im Arbeitsalltag zählt</h2>
+      <hr class="divider">
+      <table class="icon-list">
+        <tr>
+          <td class="icon-cell">📋</td>
+          <td class="icon-text"><b>Anrufzusammenfassung abrufen:</b> "Was hat Kunde Weber heute Morgen gesagt?"</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">📅</td>
+          <td class="icon-text"><b>Termine abfragen:</b> "Was steht morgen an?"</td>
+        </tr>
+        <tr>
+          <td class="icon-cell">🎙️</td>
+          <td class="icon-text"><b>Anweisungen geben:</b> "Wenn Firma Müller heute anruft, direkt zu mir durchstellen."</td>
+        </tr>
+      </table>
+      <p class="body-text" style="margin-top:20px;">Egal ob beim Kunden, unterwegs oder mitten im Auftrag. Das Feature wurde bereits getestet. Die Rückmeldung war eindeutig.</p>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- Pricing Card -->
+  <div class="card">
+    <div class="card-body">
+
+      <!-- Petra + WhatsApp Badge -->
+      <div style="display:flex;justify-content:center;margin-bottom:16px;">
+        <div style="position:relative;display:inline-block;">
+          <img src="https://framerusercontent.com/images/wD5sulqIEBeqaadHq8mrgRoqziI.png"
+               alt="Petra"
+               style="width:72px;height:72px;border-radius:50%;border:3px solid #e5e7eb;display:block;">
+          <div style="position:absolute;bottom:0;right:0;width:26px;height:26px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,0.15);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="12" fill="#25D366"/>
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <p class="label">Petra auf WhatsApp</p>
+      <h2 class="section">29 Euro/Monat. Jetzt sichern.</h2>
+      <hr class="divider">
+      <p class="body-text">Als Kunde im Mai bekommt ihr das WhatsApp-Feature zum <b>Sonderpreis von 29 Euro pro Monat.</b></p>
+      <p class="body-text">Ab Juni gilt der reguläre Preis von 39 Euro pro Monat.</p>
+      <div class="cta-wrap">
+        <a href="#" class="cta">Jetzt aktivieren</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- Closing Card -->
+  <div class="card">
+    <div class="card-body">
+      <p class="body-text" style="margin:0;">Unser Ziel war immer dasselbe: Handwerksbetrieben eine vollwertige KI-Bürokraft zur Verfügung stellen. Jemand, der ans Telefon geht, Termine koordiniert und den Laden am Laufen hält, während ihr euch ums Wesentliche kümmert. Der Feature-Mai ist der nächste Schritt dahin.</p>
+    </div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- Dark Footer Card -->
+  <div class="card-dark">
+    <div class="footer-body">
+      <h2>Fragen oder Feedback?</h2>
+      <p>Antwortet einfach auf diese Mail, sie landet direkt bei uns.</p>
+    </div>
+  </div>
+
+  <!-- Bottom Footer -->
+  <div class="bottom-footer">
+    <div class="instagram-wrap">
+      <a href="https://www.instagram.com/hallopetra.de/" target="_blank" class="instagram-icon">📷</a>
+    </div>
+    <p>Nächsten Mittwoch geht der nächste Newsletter raus.</p>
+    <p class="unsubscribe">Diese E-Mail wurde an euch gesendet, weil ihr euch für den HalloPetra-Newsletter angemeldet habt.</p>
+  </div>
+
+</div>
+</body>
+</html>
