@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HalloPetra Newsletter – Ausgabe #2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; padding:0; background:#f0f4f8; font-family:Inter,Arial,Helvetica,sans-serif; }
+    .outer { max-width:600px; margin:0 auto; padding:20px 0 32px; }
+
+    .card      { background:#fff; border-radius:16px; box-shadow:0 1px 16px rgba(0,0,0,0.04),0 1px 8px rgba(0,0,0,0.04); overflow:hidden; margin-bottom:8px; }
+    .card-dark { background:#111827; border-radius:16px; overflow:hidden; margin-bottom:8px; }
+    .card-navy { background:#2d4f7c; border-radius:16px; overflow:hidden; margin-bottom:8px; }
+    .gap { height:8px; }
+    .cb { padding:44px 44px 40px; }
+
+    .label      { text-align:center; color:#2d4f7c; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:600; margin:0 0 6px; }
+    .label-light{ text-align:center; color:rgba(255,255,255,0.5); font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:600; margin:0 0 6px; }
+
+    h1.main { text-align:center; color:#1b1b1b; font-size:26px; line-height:34px; font-weight:700; margin:0 0 4px; }
+    h1.feat { text-align:center; color:#1b1b1b; font-size:30px; line-height:38px; font-weight:800; margin:0 0 4px; }
+    h2.sec  { text-align:center; color:#fff;    font-size:26px; line-height:34px; font-weight:800; margin:0 0 4px; }
+
+    .divider       { width:60px; border:none; border-top:3px solid #2d4f7c;              margin:14px auto 24px; display:block; }
+    .divider-light { width:60px; border:none; border-top:3px solid rgba(255,255,255,0.2); margin:14px auto 24px; display:block; }
+
+    p.bt       { text-align:center; color:#4a4a4a;             font-size:15px; line-height:27px; margin:0 0 14px; padding:0 8px; }
+    p.bt-light { text-align:center; color:rgba(255,255,255,0.75); font-size:15px; line-height:27px; margin:0 0 14px; padding:0 8px; }
+
+    .cta-wrap { text-align:center; padding-top:24px; }
+    a.cta       { display:inline-block; background:#2d4f7c; color:#fff; font-family:Inter,Arial,sans-serif; font-size:15px; font-weight:600; text-decoration:none; padding:16px 36px; border-radius:8px; }
+    a.cta-white { display:inline-block; background:#fff;    color:#111827; font-family:Inter,Arial,sans-serif; font-size:15px; font-weight:600; text-decoration:none; padding:16px 36px; border-radius:8px; }
+
+    .footer-body { padding:48px 44px; text-align:center; }
+    .footer-body h2 { color:#fff; font-size:22px; font-weight:700; margin:0 0 8px; }
+    .footer-body p  { color:rgba(255,255,255,0.8); font-size:15px; line-height:24px; margin:0; }
+
+    .bf { padding:24px 20px 8px; text-align:center; }
+    .bf p      { color:#6b7280; font-size:13px; line-height:22px; margin:0 0 8px; }
+    .bf .unsub { color:#9ca3af; font-size:11px; line-height:20px; margin:0; }
+    .ig-wrap { text-align:center; padding:0 0 12px; }
+    .ig { display:inline-block; background:#2d4f7c; border-radius:50%; width:38px; height:38px; line-height:38px; font-size:18px; text-decoration:none; }
+
+    .progress-wrap { display:flex; gap:6px; justify-content:center; margin:18px 0 0; }
+    .progress-step { width:44px; height:6px; border-radius:3px; background:rgba(255,255,255,0.25); }
+    .progress-step.active { background:#fff; }
+
+    .roadmap { display:flex; gap:8px; justify-content:space-between; margin:18px 0 0; }
+    .roadmap-item { flex:1; padding:12px 8px; border-radius:8px; background:rgba(255,255,255,0.06); text-align:center; }
+    .roadmap-item .wk { display:block; color:rgba(255,255,255,0.5); font-size:9px; letter-spacing:1.5px; text-transform:uppercase; font-weight:600; margin-bottom:4px; font-family:Inter,sans-serif; }
+    .roadmap-item .ti { display:block; color:rgba(255,255,255,0.85); font-size:12px; font-weight:600; line-height:16px; font-family:Inter,sans-serif; }
+    .roadmap-item.done { background:rgba(37,211,102,0.12); }
+    .roadmap-item.done .wk { color:#25D366; }
+    .roadmap-item.next { background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.25); }
+
+    /* Use case tile */
+    .uc-row { display:flex; gap:14px; align-items:flex-start; padding:14px 0; }
+    .uc-row + .uc-row { border-top:1px solid #eef2f7; }
+    .uc-icon { font-size:22px; flex-shrink:0; line-height:1.3; width:36px; text-align:center; }
+    .uc-title { font-weight:700; color:#1b1b1b; font-size:14px; font-family:Inter,sans-serif; margin-bottom:3px; }
+    .uc-body  { color:#6b7280; font-size:13px; line-height:20px; font-family:Inter,sans-serif; }
+  </style>
+</head>
+<body>
+<div class="outer">
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <div class="card" style="margin-bottom:8px;">
+    <div style="background:#4e72a8;border-radius:16px 16px 0 0;padding:28px 32px 28px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;min-height:170px;">
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <p style="display:inline-block;color:rgba(255,255,255,0.85);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;margin:0 0 16px;border:1px solid rgba(255,255,255,0.4);border-radius:20px;padding:4px 10px;font-family:Inter,sans-serif;">Ausgabe #2 · Feature-Mai</p>
+          <h1 style="color:#fff;font-size:32px;font-weight:800;margin:0 0 10px;line-height:1.15;font-family:Inter,sans-serif;">Petra ist jetzt da,<br>wo du eh schon bist.</h1>
+          <p style="color:rgba(255,255,255,0.85);font-size:13px;line-height:19px;margin:0;font-family:Inter,sans-serif;">Auf der Baustelle. Im Auto. Beim Kunden. Ab heute schreibt Petra dir per WhatsApp — und ab nächstem Mittwoch kommt das nächste Feature.</p>
+          <div class="progress-wrap">
+            <div class="progress-step active"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+            <div class="progress-step"></div>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;flex-shrink:0;margin-top:4px;">
+        <div style="width:130px;height:130px;border-radius:50%;border:4px solid rgba(255,255,255,0.9);overflow:hidden;">
+          <img src="https://framerusercontent.com/images/wD5sulqIEBeqaadHq8mrgRoqziI.png" alt="Petra"
+               style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div style="position:absolute;bottom:6px;right:-4px;background:#fff;color:#2d4f7c;font-size:12px;font-weight:800;border-radius:20px;padding:4px 10px;box-shadow:0 2px 8px rgba(0,0,0,0.2);font-family:Inter,sans-serif;">🗞 #02</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- ── INTRO + FEATURE #1 (combined) ─────────────────────── -->
+  <div class="card">
+    <div class="cb">
+
+      <p class="label">Hallo {{var:name:""}} · Feature #1 von 4</p>
+
+      <div style="text-align:center;margin:6px 0 6px;">
+        <span style="display:inline-block;background:#25D366;color:#fff;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;border-radius:12px;padding:3px 10px;font-family:Inter,sans-serif;">Live · Ab heute buchbar</span>
+      </div>
+
+      <h1 class="feat">Verpass keinen Anruf mehr — auch nicht von der Baustelle.</h1>
+      <hr class="divider">
+
+      <p class="bt">Du bist beim Kunden, im Auto, oder gerade selbst am Telefon — und es klingelt. Petra geht ran, klärt das Wichtigste, und du bekommst direkt danach eine WhatsApp.</p>
+      <p class="bt" style="margin:0 0 4px;"><b>Drei Zeilen. Alles drin.</b> Wer angerufen hat, was er wollte, was als Nächstes ansteht. Kein Dashboard. Keine App. Kein Login.</p>
+
+      <!-- Phone mockup -->
+      <div style="text-align:center;margin:32px 0 24px;">
+        <div style="display:inline-block;background:#1c1c1e;border-radius:44px;padding:8px;box-shadow:0 24px 56px rgba(0,0,0,0.22),inset 0 0 0 1px rgba(255,255,255,0.08);">
+          <div style="width:240px;background:linear-gradient(170deg,#1b2d4a 0%,#0c1825 100%);border-radius:38px;overflow:hidden;padding:18px 14px 30px;">
+            <div style="background:#000;width:80px;height:22px;border-radius:11px;margin:0 auto 22px;"></div>
+            <div style="color:#fff;font-size:46px;font-weight:200;text-align:center;font-family:Inter,sans-serif;letter-spacing:-1px;line-height:1;margin-bottom:4px;">09:13</div>
+            <div style="color:rgba(255,255,255,0.45);font-size:11px;text-align:center;font-family:Inter,sans-serif;margin-bottom:22px;">Mittwoch, 6. Mai</div>
+            <div style="background:rgba(255,255,255,0.13);border-radius:14px;padding:11px 12px;">
+              <div style="display:flex;gap:9px;align-items:flex-start;">
+                <div style="width:30px;height:30px;border-radius:8px;background:#25D366;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/>
+                  </svg>
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+                    <span style="font-size:11px;font-weight:700;color:#fff;font-family:Inter,sans-serif;">WhatsApp · HalloPetra</span>
+                    <span style="font-size:10px;color:rgba(255,255,255,0.5);font-family:Inter,sans-serif;">jetzt</span>
+                  </div>
+                  <div style="font-size:11.5px;color:rgba(255,255,255,0.92);line-height:17px;font-family:Inter,sans-serif;">📞 <b>Herr Weber</b> · Therme fällt nach 10 Min ab, Fehlercode EA. Möchte Rückruf heute Vormittag.<br><span style="color:rgba(255,255,255,0.6);">→ Antworte „Rückruf" und Petra ruft an.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Three "Bilder im Kopf" from survey -->
+      <div style="background:#f8fafc;border-radius:12px;padding:8px 24px 14px;margin:0 0 24px;">
+        <p style="text-align:center;color:#9ca3af;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin:14px 0 4px;font-family:Inter,sans-serif;">Was du ab heute machen kannst</p>
+        <div class="uc-row">
+          <div class="uc-icon">💬</div>
+          <div>
+            <div class="uc-title">„Wer hat angerufen?" — direkt aus WhatsApp</div>
+            <div class="uc-body">Frag Petra einfach im Chat. Sie antwortet mit Nummer, Anliegen und Rückruf-Button. Kein Login, kein Dashboard.</div>
+          </div>
+        </div>
+        <div class="uc-row">
+          <div class="uc-icon">🔧</div>
+          <div>
+            <div class="uc-title">Aufgaben unterwegs delegieren</div>
+            <div class="uc-body">„Ruf Müller an und frag, wann er die Unterlagen braucht." Petra erledigt's, während du auf der Baustelle bleibst.</div>
+          </div>
+        </div>
+        <div class="uc-row">
+          <div class="uc-icon">📲</div>
+          <div>
+            <div class="uc-title">Dein Team bekommt Anrufe als WhatsApp — nicht als Mail</div>
+            <div class="uc-body">Jeder Geselle hat WhatsApp offen. E-Mails liest im Auto keiner. Petra schickt die richtige Info an die richtige Person.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 1 -->
+      <div style="background:#f8fafc;border-radius:12px;padding:20px 24px;margin:0 0 12px;display:flex;gap:16px;align-items:flex-start;">
+        <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/thomas-schwelle-2.png" alt="Thomas Schwelle"
+             style="width:72px;height:72px;border-radius:50%;object-fit:cover;flex-shrink:0;object-position:center top;">
+        <div>
+          <p style="color:#1b1b1b;font-size:14px;line-height:22px;font-style:italic;margin:0 0 8px;font-family:Inter,sans-serif;">„Man vergisst halt nix mehr. Mir fällt was ein, ich fahr Auto oder hock in Baugesprächen — dann kannst du's gleich machen und vergisst das nicht extra."</p>
+          <p style="color:#6b7280;font-size:12px;font-weight:600;margin:0;font-family:Inter,sans-serif;">Thomas Schwelle · Beta-Nutzer</p>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 (survey quote) -->
+      <div style="background:#f8fafc;border-radius:12px;padding:20px 24px;margin:0 0 24px;">
+        <p style="color:#1b1b1b;font-size:14px;line-height:22px;font-style:italic;margin:0 0 6px;font-family:Inter,sans-serif;">„Ich verpasse weniger Anrufe, meine Mitarbeiter bekommen Nachrichten wer angerufen hat. Wir können besser agieren und reagieren."</p>
+        <p style="color:#6b7280;font-size:12px;font-weight:600;margin:0;font-family:Inter,sans-serif;">Oehlrich Heizung &amp; Sanitär</p>
+      </div>
+
+      <!-- Pricing block -->
+      <div style="background:#eff4ff;border-radius:14px;padding:24px 24px 28px;text-align:center;">
+        <p style="color:#4e72a8;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;margin:0 0 8px;font-family:Inter,sans-serif;">Gründerpreis · nur im Mai</p>
+        <div style="color:#1b1b1b;font-size:38px;font-weight:800;font-family:Inter,sans-serif;line-height:1;margin-bottom:4px;">29 <span style="font-size:18px;font-weight:600;color:#4a4a4a;">€/Monat</span></div>
+        <p style="color:#6b7280;font-size:12px;margin:6px 0 4px;font-family:Inter,sans-serif;">Wer im Mai aktiviert, bleibt für immer auf 29&nbsp;€.</p>
+        <p style="color:#9ca3af;font-size:12px;margin:0 0 20px;font-family:Inter,sans-serif;">Ab Juni regulär 39&nbsp;€/Monat.</p>
+        <a href="https://app.hallopetra.de/dashboard/whatsapp" class="cta" style="display:inline-block;">Für mein Team aktivieren</a>
+        <p style="margin:14px 0 0;font-size:13px;color:#6b7280;font-family:Inter,sans-serif;">Lieber erst kurz reden? <a href="https://calendly.com/d/cvp2-tfx-srd/feature-mai-demo?month=2026-05" style="color:#2d4f7c;font-weight:600;text-decoration:none;">Termin vereinbaren →</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- ── FEATURE #2: Stimme ───────────────────────────────── -->
+  <div class="card">
+    <div style="padding:0;">
+
+      <div style="background:linear-gradient(160deg,#dce8f5,#c8d9ee);text-align:center;padding:32px 0 0;">
+        <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/petra-mic.png" alt="Petra mit Mikrofon"
+             style="width:240px;height:240px;object-fit:contain;object-position:center bottom;display:block;margin:0 auto;">
+      </div>
+
+      <div style="padding:28px 44px 40px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px;">
+          <span style="background:#4e72a8;color:#fff;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;border-radius:12px;padding:3px 10px;font-family:Inter,sans-serif;">Beta · nur 50 Plätze</span>
+          <p class="label" style="margin:0;">Feature #2 von 4</p>
+        </div>
+        <h2 style="text-align:center;color:#1b1b1b;font-size:26px;line-height:34px;font-weight:800;margin:0 0 4px;">Petra mit deiner Stimme.</h2>
+        <hr class="divider">
+        <p class="bt">Bisher wählst du aus einer Auswahl. Ab nächstem Mittwoch kannst du Petra deine eigene Stimme geben — sie klingt dann wie einer aus eurem Team.</p>
+        <p class="bt" style="margin:0;">Die Beta öffnet mit <b>50 Plätzen</b>. Wer sich heute einträgt, ist dabei.</p>
+        <div class="cta-wrap">
+          <a href="https://tally.so/r/RG8rA9?name={{var:name:%22%22}}&email={{contact.email}}" target="_blank" class="cta">Beta-Platz sichern</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- ── ROADMAP TEASER ────────────────────────────────────── -->
+  <div class="card-dark">
+    <div style="padding:32px 32px 36px;">
+      <p class="label-light">Feature-Mai · 4 Wochen, 4 Releases</p>
+      <h2 class="sec">Was noch kommt.</h2>
+      <hr class="divider-light">
+      <div class="roadmap">
+        <div class="roadmap-item done">
+          <span class="wk">KW 19 · Heute</span>
+          <span class="ti">WhatsApp-<br>Benachrichtigungen</span>
+        </div>
+        <div class="roadmap-item next">
+          <span class="wk">KW 20 · Nächste</span>
+          <span class="ti">Eigene<br>Stimme</span>
+        </div>
+        <div class="roadmap-item">
+          <span class="wk">KW 21</span>
+          <span class="ti">Verraten wir<br>nächste Woche</span>
+        </div>
+        <div class="roadmap-item">
+          <span class="wk">KW 22</span>
+          <span class="ti">Das Große<br>am Schluss</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- ── FEATURE-MAI ABSCHLUSS ────────────────────────────── -->
+  <div class="card">
+    <div class="cb">
+      <p class="label">Warum Feature-Mai</p>
+      <hr class="divider">
+      <p class="bt" style="font-size:18px;font-weight:700;color:#1b1b1b;line-height:28px;padding:0 4px;">„Ihr denkt KI gnadenlos zu Ende im Handwerk."</p>
+      <p class="bt">Hat uns ein Kunde letzte Woche geschrieben. Genau das ist der Anspruch.</p>
+      <p class="bt">Eine vollwertige KI-Bürokraft heißt: Petra muss mehr können. Termine, Anrufe, Aufgaben, Stimme, Kontext. Das alles lernt sie jetzt — Feature für Feature, Mittwoch für Mittwoch.</p>
+      <p class="bt" style="margin:0;">Bis nächste Woche.<br><b>Das HalloPetra-Team</b></p>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <div class="card-navy">
+    <div class="footer-body">
+      <h2>Fragen oder Feedback?</h2>
+      <p>Antworte einfach auf diese Mail — sie landet direkt bei uns.</p>
+    </div>
+  </div>
+
+  <div class="bf">
+    <div class="ig-wrap">
+      <a href="https://www.instagram.com/hallopetra.de/" target="_blank" class="ig">📷</a>
+    </div>
+    <p>Nächsten Mittwoch kommt das nächste Feature.</p>
+    <p class="unsub">Diese E-Mail wurde an dich gesendet, weil du dich für den HalloPetra-Newsletter angemeldet hast. <a href="{{unsubscribe_link}}" style="color:#9ca3af;">Abmelden</a></p>
+  </div>
+
+</div>
+</body>
+</html>
