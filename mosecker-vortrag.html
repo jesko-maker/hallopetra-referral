@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HalloPetra — Vortrag bei Mosecker</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: #0f2744;
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* ── Slide Container ── */
+    .slides { width: 100%; height: 100vh; position: relative; }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 80px;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+    .slide.active  { opacity: 1; transform: translateX(0); pointer-events: all; }
+    .slide.exit    { opacity: 0; transform: translateX(-40px); }
+
+    /* ── Navigation ── */
+    .nav-dots {
+      position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 8px; z-index: 100;
+    }
+    .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.22); cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .dot.active { background: #22c55e; transform: scale(1.3); }
+
+    .arrow {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.07); border: none;
+      color: rgba(255,255,255,0.45); font-size: 22px;
+      width: 48px; height: 48px; border-radius: 50%;
+      cursor: pointer; z-index: 100; transition: background 0.2s, color 0.2s;
+    }
+    .arrow:hover { background: rgba(255,255,255,0.14); color: #fff; }
+    .arrow.left  { left: 24px; }
+    .arrow.right { right: 24px; }
+
+    .slide-num {
+      position: fixed; top: 24px; right: 32px;
+      color: rgba(255,255,255,0.2); font-size: 13px; font-weight: 600; z-index: 100;
+    }
+
+    /* ── Top Logo Bar ── */
+    .logo-bar {
+      position: fixed; top: 22px; left: 32px;
+      display: flex; align-items: center; gap: 14px; z-index: 100;
+    }
+    .logo-hp { display: flex; align-items: center; gap: 8px; }
+    .logo-hp img { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; }
+    .logo-hp span { color: rgba(255,255,255,0.6); font-size: 14px; font-weight: 700; }
+    .logo-divider { width: 1px; height: 18px; background: rgba(255,255,255,0.2); }
+    .logo-mosecker { color: rgba(255,255,255,0.35); font-size: 13px; font-weight: 600; }
+
+    /* ── Typography ── */
+    .eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: 3px;
+      text-transform: uppercase; color: #22c55e; margin-bottom: 16px;
+    }
+    h1 { font-size: clamp(36px, 5vw, 62px); font-weight: 900; line-height: 1.08; letter-spacing: -1px; }
+    h2 { font-size: clamp(26px, 3.5vw, 44px); font-weight: 900; line-height: 1.1; letter-spacing: -0.5px; }
+    .subtitle { color: rgba(255,255,255,0.55); font-size: clamp(14px, 1.7vw, 19px); line-height: 1.6; margin-top: 16px; }
+    .green { color: #22c55e; }
+
+    /* ── Slide Backgrounds ── */
+    .bg-cover   { background: radial-gradient(ellipse at 70% 50%, #1a3d70 0%, #0f2744 65%); }
+    .bg-default { background: #0f2744; }
+    .bg-problem { background: radial-gradient(ellipse at 30% 60%, #0a1f3d 0%, #0f2744 70%); }
+    .bg-cta     { background: radial-gradient(ellipse at 50% 50%, #163a6e 0%, #0f2744 70%); }
+    .bg-blue    { background: radial-gradient(ellipse at 60% 40%, #1e3f72 0%, #0f2744 65%); }
+
+    /* ── Layouts ── */
+    .two-col      { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
+    .two-col-wide { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; width: 100%; }
+
+    /* ── Cards ── */
+    .card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 20px 24px;
+    }
+    .card-blue {
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 14px; padding: 20px 24px;
+    }
+    .card-green {
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 14px; padding: 20px 24px;
+    }
+
+    /* ── Stats ── */
+    .stats { display: flex; gap: 28px; margin-top: 32px; }
+    .stat-num   { font-size: 38px; font-weight: 900; color: #22c55e; line-height: 1; }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+    /* ── Problem Items ── */
+    .problem-list { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 720px; }
+    .problem-item {
+      display: flex; align-items: flex-start; gap: 18px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 16px 20px;
+    }
+    .problem-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .problem-text { font-size: 15px; line-height: 1.5; }
+    .problem-text strong { font-weight: 700; }
+    .problem-text span { color: rgba(255,255,255,0.45); font-size: 13px; }
+
+    /* ── Timeline ── */
+    .timeline { display: flex; flex-direction: column; gap: 18px; }
+    .timeline-item { display: flex; gap: 18px; align-items: flex-start; }
+    .timeline-dot {
+      width: 34px; height: 34px; border-radius: 50%; background: #1e4a8c;
+      border: 1px solid rgba(59,130,246,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0; margin-top: 2px;
+    }
+    .timeline-content h4 { font-size: 15px; font-weight: 800; margin-bottom: 3px; }
+    .timeline-content p  { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+    /* ── Feature Grid ── */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; }
+    .feature-item {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 18px;
+    }
+    .feature-item.highlight { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.4); }
+    .feature-icon  { font-size: 26px; margin-bottom: 9px; }
+    .feature-title { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+    .feature-desc  { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+    .badge-neu {
+      display: inline-block; background: #22c55e; color: #fff;
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; border-radius: 4px; padding: 2px 7px;
+      margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── Vision Grid ── */
+    .vision-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; width: 100%; }
+    .vision-item {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 18px; display: flex; gap: 14px; align-items: flex-start;
+    }
+    .vision-icon  { font-size: 22px; flex-shrink: 0; }
+    .vision-title { font-size: 14px; font-weight: 800; margin-bottom: 4px; }
+    .vision-desc  { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+    .coming       { color: rgba(255,255,255,0.22); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 5px; }
+
+    /* ── Cover: Mosecker badge ── */
+    .partner-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; padding: 8px 16px; margin-bottom: 24px;
+    }
+    .partner-badge span { color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+    .partner-badge strong { color: #fff; font-size: 14px; font-weight: 800; }
+
+  </style>
+</head>
+<body>
+
+<!-- Fixed UI -->
+<div class="logo-bar">
+  <div class="logo-hp">
+    <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/petra-face-nobg.png" alt="Petra">
+    <span>HalloPetra</span>
+  </div>
+  <div class="logo-divider"></div>
+  <div class="logo-mosecker">Mosecker</div>
+</div>
+<div class="slide-num" id="slideNum">1 / 8</div>
+<button class="arrow left" onclick="changeSlide(-1)">&#8592;</button>
+<button class="arrow right" onclick="changeSlide(1)">&#8594;</button>
+<div class="nav-dots" id="navDots"></div>
+
+
+<div class="slides" id="slides">
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SLIDE 1: COVER                                 -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="slide bg-cover" data-index="0">
+    <div class="two-col-wide">
+      <div>
+        <!-- Mosecker Partner Badge -->
+        <div class="partner-badge">
+          <span>Präsentation für</span>
+          <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/mosecker-logo.svg"
+               style="height:22px; filter:brightness(0) invert(1);" alt="Mosecker">
+          <span style="color:rgba(255,255,255,0.2);">&middot;</span>
+          <span>Mai 2026</span>
+        </div>
+        <h1>Eure neue<br><span class="green">KI-Bürokraft.</span></h1>
+        <p class="subtitle">Petra nimmt Anrufe entgegen, schreibt Nachrichten und ruft jetzt auch selbst an — damit euer Team sich auf die Arbeit konzentrieren kann.</p>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num">2.200+</div>
+            <div class="stat-label">Betriebe vertrauen uns</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Immer erreichbar</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">10 Min.</div>
+            <div class="stat-label">Bis Petra loslegt</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/petra-calling-nobg.png"
+             style="width:100%;max-width:340px;" alt="Petra">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SLIDE 2: DAS PROBLEM (jetzt zuerst)            -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="slide bg-problem" data-index="1">
+    <div style="width:100%;max-width:740px;">
+      <div class="eyebrow">Kennt ihr das?</div>
+      <h2 style="margin-bottom:28px;">Der Betrieb läuft —<br>aber das Telefon <span class="green">nicht.</span></h2>
+      <div class="problem-list">
+        <div class="problem-item">
+          <div class="problem-icon">📞</div>
+          <div class="problem-text">
+            <strong>Kunden rufen an, ihr seid auf der Baustelle.</strong><br>
+            <span>Kein Anruf beantwortet = kein Auftrag.</span>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon">📋</div>
+          <div class="problem-text">
+            <strong>Wartungsliste mit 80 Nummern. Wer ruft die ab?</strong><br>
+            <span>Stunden am Telefon verbringen, die niemand hat.</span>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon">👥</div>
+          <div class="problem-text">
+            <strong>Neues Personal finden ist herausfordernd und teuer.</strong><br>
+            <span>Für Büroarbeit eine Vollzeitkraft einstellen — kaum realistisch.</span>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-icon">⏰</div>
+          <div class="problem-text">
+            <strong>Büro schließt um 17 Uhr. Kundenanfragen nicht.</strong><br>
+            <span>Wer antwortet nach Feierabend?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SLIDE 3: WER WIR SIND                          -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="slide bg-blue" data-index="2">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">Wer wir sind</div>
+        <h2>Gegründet von<br>Handwerkern<br><span class="green">für Handwerker.</span></h2>
+        <p class="subtitle" style="margin-top:12px;">Wir wissen, wie euer Alltag aussieht — nicht aus dem Büro, sondern aus der Werkstatt.</p>
+      </div>
+      <div style="text-align:center;">
+        <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/team-foto.jpg"
+             style="width:100%; border-radius:16px; object-fit:cover; max-height:420px;"
+             alt="Das HalloPetra-Team">
+        <p style="color:rgba(255,255,255,0.35); font-size:12px; margin-top:10px; text-align:center;">Das HalloPetra-Team</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SLIDE 4: PETRA STELLT SICH VOR                 -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="slide bg-cover" data-index="3">
+    <div class="two-col-wide">
+      <div>
+        <div class="eyebrow">Die Lösung</div>
+        <h2>Das ist <span class="green">Petra.</span></h2>
+        <p class="subtitle" style="margin-top:16px;">Eure KI-Bürokraft. Nimmt Anrufe entgegen, leitet weiter, vereinbart Termine — und ruft jetzt auch selbst an.</p>
+        <div style="margin-top:24px; display:flex; flex-direction:column; gap:12px;">
+          <div class="card-green">
+            <div style="font-size:14px; font-weight:700; margin-bottom:4px;">🎙️ Klingt wie ihr</div>
+            <div style="font-size:13px; color:rgba(255,255,255,0.6);">Petra spricht mit eurer Stimme und in eurem Namen — eure Kunden merken keinen Unterschied.</div>
+          </div>
+          <div class="card-blue">
+            <div style="font-size:14px; font-weight:700; margin-bottom:4px;">⚡ In 10 Minuten eingerichtet</div>
+            <div style="font-size:13px; color:rgba(255,255,255,0.55);">Rufweiterleitung aktivieren — fertig. Kein IT-Wissen nötig.</div>
+          </div>
+          <div class="card">
+            <div style="font-size:14px; font-weight:700; margin-bottom:4px;">🔒 DSGVO-konform, Made in Germany</div>
+            <div style="font-size:13px; color:rgba(255,255,255,0.5);">Server in Deutschland. Kundendaten bleiben wo sie hingehören.</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/petra-calling-nobg.png"
+             style="width:100%;max-width:300px;" alt="Petra">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SLIDE 5: WAS PETRA KANN                        -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="slide bg-default" data-index="4">
+    <div style="width:100%;">
+      <div class="eyebrow">Features</div>
+      <h2 style="margin-bottom:24px;">Was Petra <span class="green">alles kann.</span></h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📞</div>
+          <div class="feature-title">Inbound-Telefonie</div>
+          <div class="feature-desc">Nimmt jeden Anruf entgegen — 24/7, auch wenn ihr auf der Baustelle seid.</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🚨</div>
+          <div class="feature-title">Notdienst-Weiterleitung</div>
+          <div class="feature-desc">Dringende Anrufe werden direkt weitergeleitet — ihr erhaltet sofort eine WhatsApp-Benachrichtigung.</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎤</div>
+          <div class="feature-title">Eigene Stimme</div>
+          <div class="feature-desc">Petra klingt wie ihr — mit eurer eigenen Stimme und eurem Namen.</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🌐</div>
+          <div class="feature-title">Website-Agent</div>
+          <div class="feature-desc">Beantwortet Fragen direkt auf eurer Website — ohne dass jemand tippen muss.</div>
+        </div>
+        <div class="feature-item highlight" style="grid-column: span 2;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+            <div class="feature-icon" style="margin-bottom:0;">📤</div>
+            <div class="feature-title" style="font-size:16px;">Outbound-Telefonie <span class="badge-neu">NEU</span></div>
+          </div>
+          <div class="feature-desc" style="font-size:13px;">Petra ruft Kunden proaktiv an — z.B. eure gesamte Wartungsliste. Ihr gebt ihr die Liste, sie ruft durch. Von eurer Nummer.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SLIDE 6: VISION — KI-BÜROKRAFT                 -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="slide bg-blue" data-index="5">
+    <div style="width:100%;">
+      <div class="eyebrow">Vision</div>
+      <h2 style="margin-bottom:10px;">Petra ist erst<br><span class="green">der Anfang.</span></h2>
+      <p class="subtitle" style="margin-bottom:28px; font-size:16px;">Kein reiner Telefonassistent — eine vollständige KI-Bürokraft für euren Betrieb.</p>
+      <div class="vision-grid">
+        <div class="vision-item">
+          <div class="vision-icon">📞</div>
+          <div>
+            <div class="vision-title">Telefon & Kommunikation</div>
+            <div class="vision-desc">Inbound, Outbound, Notdienst, Website — alles auf einer Plattform.</div>
+          </div>
+        </div>
+        <div class="vision-item">
+          <div class="vision-icon">📅</div>
+          <div>
+            <div class="vision-title">Terminmanagement</div>
+            <div class="vision-desc">Petra koordiniert Termine direkt mit euren Kunden — automatisch.</div>
+            <div class="coming">In Entwicklung</div>
+          </div>
+        </div>
+        <div class="vision-item">
+          <div class="vision-icon">📄</div>
+          <div>
+            <div class="vision-title">Angebote & Aufträge</div>
+            <div class="vision-desc">Angebotserstellung, Auftragserfassung, Kundenverwaltung.</div>
+            <div class="coming">In Entwicklung</div>
+          </div>
+        </div>
+        <div class="vision-item" style="background:rgba(34,197,94,0.08); border-color:rgba(34,197,94,0.2);">
+          <div class="vision-icon">✨</div>
+          <div>
+            <div class="vision-title">Euer Wunsch zählt</div>
+            <div class="vision-desc">Was soll Petra als nächstes können? Wir bauen, was euer Betrieb braucht.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SLIDE 7: LIVE DEMO                             -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="slide bg-cover" data-index="6">
+    <div style="width:100%; text-align:center; display:flex; flex-direction:column; align-items:center;">
+      <div class="eyebrow" style="text-align:center;">Jetzt live</div>
+      <h1 style="text-align:center;">Schauen wir's uns<br><span class="green">gemeinsam an.</span></h1>
+      <p class="subtitle" style="text-align:center; max-width:480px; margin:16px auto 0;">Ich zeige euch, wie Petra einen Anruf entgegennimmt — und wie ihr in 10 Minuten loslegen könnt.</p>
+      <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/petra-calling-nobg.png"
+           style="width:210px; margin-top:20px;" alt="Petra">
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════ -->
+  <!-- SLIDE 8: CTA — KOSTENLOS TESTEN                -->
+  <!-- ══════════════════════════════════════════════ -->
+  <div class="slide bg-cta" data-index="7">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">Euer Start</div>
+        <h2>Kostenlos testen.<br><span class="green">Heute noch.</span></h2>
+        <p class="subtitle" style="margin-top:16px;">In 10 Minuten eingerichtet. Keine Kreditkarte. Kein Risiko.</p>
+        <div style="margin-top:24px; display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; font-size:15px;">
+            <span style="color:#22c55e; font-size:20px;">✓</span> Rufweiterleitung aktivieren
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:15px;">
+            <span style="color:#22c55e; font-size:20px;">✓</span> Petra lernt euren Betrieb kennen
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:15px;">
+            <span style="color:#22c55e; font-size:20px;">✓</span> Kein verpasster Anruf mehr
+          </div>
+        </div>
+        <div style="margin-top:28px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+          <div style="background:#22c55e; color:#fff; font-size:16px; font-weight:800; border-radius:10px; padding:14px 32px;">
+            hallopetra.de
+          </div>
+          <div style="color:rgba(255,255,255,0.4); font-size:13px;">oder QR-Code scannen →</div>
+        </div>
+        <div style="margin-top:18px;">
+          <a href="https://calendly.com/d/cvp2-tfx-srd/feature-mai-demo" target="_blank"
+             style="color:#22c55e; font-size:13px; font-weight:700; text-decoration:none;">
+            📅 15 Min. Demo buchen →
+          </a>
+        </div>
+      </div>
+      <div style="text-align:center; display:flex; flex-direction:column; align-items:center; gap:14px;">
+        <div style="background:#fff; border-radius:16px; padding:14px; display:inline-block;">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://hallopetra.de&color=0f2744&bgcolor=ffffff"
+               width="180" height="180" alt="QR Code hallopetra.de" style="display:block;">
+        </div>
+        <p style="color:rgba(255,255,255,0.35); font-size:13px;">hallopetra.de</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /slides -->
+
+
+<script>
+  const totalSlides = 8;
+  let current = 0;
+  let isAnimating = false;
+
+  const dotsContainer = document.getElementById('navDots');
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  function updateUI() {
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    document.getElementById('slideNum').textContent = (current + 1) + ' / ' + totalSlides;
+  }
+
+  function goTo(index) {
+    if (isAnimating || index === current || index < 0 || index >= totalSlides) return;
+    isAnimating = true;
+    const slides = document.querySelectorAll('.slide');
+    slides[current].classList.add('exit');
+    slides[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    setTimeout(() => {
+      document.querySelectorAll('.slide.exit').forEach(s => s.classList.remove('exit'));
+      isAnimating = false;
+    }, 420);
+    updateUI();
+  }
+
+  function changeSlide(dir) { goTo(current + dir); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); changeSlide(-1); }
+  });
+
+  document.getElementById('slides').addEventListener('click', () => changeSlide(1));
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) changeSlide(diff > 0 ? 1 : -1);
+  });
+
+  document.querySelectorAll('.slide')[0].classList.add('active');
+  updateUI();
+</script>
+
+</body>
+</html>
