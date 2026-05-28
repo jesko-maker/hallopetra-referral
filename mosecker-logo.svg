@@ -5,5 +5,5 @@
     <polygon points="225,40 325,140 225,240 125,140"/>
     <polygon points="310,40 410,140 310,240 210,140"/>
   </g>
-  <text x="320" y="205" font-family="Lato Heavy, Lato, Arial, Helvetica, sans-serif" font-weight="900" font-size="162" fill="#1e408f" letter-spacing="-5">mosecker</text>
+  <text x="320" y="205" font-family="Lato Heavy, Lato, Arial, Helvetica, sans-serif" font-weight="900" font-size="162" fill="#ffffff" letter-spacing="-5">mosecker</text>
 </svg>
