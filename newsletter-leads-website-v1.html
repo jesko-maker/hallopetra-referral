@@ -41,18 +41,84 @@
       <td align="center" class="mobile-pad" style="padding:34px 18px;">
         <table role="presentation" class="container shell" cellspacing="0" cellpadding="0" border="0" style="width:680px; max-width:680px; background:#eaf3fc;">
 
-          <!-- Hero: PNG-Bild -->
+          <!-- HERO -->
           <tr>
-            <td style="padding:0;">
-              <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/02_hero_header.png" width="680" alt="HalloPetra: Petra ist jetzt deine Bürokraft." style="width:100%; height:auto; border-radius:28px 28px 0 0;">
+            <td style="background:#010d24; border-radius:28px 28px 0 0; padding:24px 32px 0 32px; position:relative; overflow:hidden;">
+
+              <!-- Decorative rings + stars (SVG overlay) -->
+              <div style="position:absolute; top:0; right:0; width:60%; height:100%; pointer-events:none; overflow:hidden; z-index:0;">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute; top:0; left:0;">
+                  <!-- Glow core behind Petra -->
+                  <circle cx="58%" cy="52%" r="85" fill="rgba(40,90,200,0.10)"/>
+                  <!-- Concentric rings -->
+                  <circle cx="58%" cy="52%" r="110" fill="none" stroke="rgba(100,160,255,0.18)" stroke-width="1.5"/>
+                  <circle cx="58%" cy="52%" r="148" fill="none" stroke="rgba(100,160,255,0.11)" stroke-width="1.5"/>
+                  <circle cx="58%" cy="52%" r="188" fill="none" stroke="rgba(100,160,255,0.06)" stroke-width="1.5"/>
+                  <!-- Stars -->
+                  <circle cx="12%" cy="12%" r="1.5" fill="rgba(180,215,255,0.85)"/>
+                  <circle cx="38%" cy="7%"  r="1"   fill="rgba(180,215,255,0.6)"/>
+                  <circle cx="78%" cy="10%" r="1.5" fill="rgba(180,215,255,0.75)"/>
+                  <circle cx="92%" cy="28%" r="1"   fill="rgba(180,215,255,0.5)"/>
+                  <circle cx="8%"  cy="45%" r="1"   fill="rgba(180,215,255,0.5)"/>
+                  <circle cx="88%" cy="60%" r="1.5" fill="rgba(180,215,255,0.65)"/>
+                  <circle cx="22%" cy="72%" r="1"   fill="rgba(180,215,255,0.45)"/>
+                  <circle cx="68%" cy="82%" r="1"   fill="rgba(180,215,255,0.55)"/>
+                  <circle cx="45%" cy="88%" r="1.5" fill="rgba(180,215,255,0.4)"/>
+                </svg>
+              </div>
+
+              <!-- Logo row -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-bottom:20px; position:relative; z-index:1;">
+                <tr>
+                  <td>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td style="padding-right:8px; vertical-align:middle;">
+                          <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/petra-face-nobg.png" width="26" height="26" alt="Petra" style="width:26px; height:26px; border-radius:50%; display:block;">
+                        </td>
+                        <td style="font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:700; color:#ffffff; letter-spacing:0.3px; vertical-align:middle;">HalloPetra</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- 2-col: text left, Petra right -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="position:relative; z-index:1;">
+                <tr>
+                  <td width="54%" valign="middle" style="padding-bottom:20px; padding-right:16px;">
+                    <!-- Badge -->
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-bottom:16px;">
+                      <tr>
+                        <td style="background:rgba(21,199,103,0.12); border:1px solid rgba(21,199,103,0.38); border-radius:20px; padding:5px 14px; font-family:Arial, Helvetica, sans-serif; font-size:10px; font-weight:800; color:#15c767; letter-spacing:1.8px; text-transform:uppercase; white-space:nowrap;">NEUIGKEIT FÜR DEINEN BETRIEB</td>
+                      </tr>
+                    </table>
+                    <!-- H1 -->
+                    <div style="font-family:Arial, Helvetica, sans-serif; font-size:30px; line-height:37px; font-weight:800; color:#ffffff; margin-bottom:14px;">Petra ist jetzt<br>deine Bürokraft.</div>
+                    <!-- Subtext -->
+                    <p style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:22px; color:rgba(255,255,255,0.65); margin:0;">Von der Telefonassistenz zur vollen Bürokraft. E-Mail und Website gibt es auch ohne Telefon-KI.</p>
+                  </td>
+                  <!-- Petra portrait -->
+                  <td width="46%" valign="bottom" align="right" style="padding-bottom:0; padding-right:0; position:relative; line-height:0; font-size:0; z-index:1;">
+                    <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/petra-hero-portrait.png" width="260" alt="Petra" style="width:260px; height:auto; display:block; margin-left:auto;">
+                    <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 55% 50%, transparent 44%, #010d24 80%); pointer-events:none;"></div>
+                  </td>
+                </tr>
+              </table>
+
             </td>
           </tr>
 
-          <!-- Feature Cards: PNG-Bild -->
+          <!-- FEATURE CARDS -->
           <tr>
-            <td align="center" style="padding:0 28px 34px; background:linear-gradient(180deg,#123b73 0%,#eaf3fc 100%);">
-              <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/03_feature_flow_3_funktionen.png" width="624" alt="3 Funktionen: Telefon, E-Mail, Website." style="width:100%; max-width:624px; height:auto; border-radius:20px;">
+            <td style="background:#010d24; padding:0 28px 20px 28px; line-height:0; font-size:0;">
+              <img src="https://raw.githubusercontent.com/jesko-maker/hallopetra-referral/main/03_feature_flow_3_funktionen.png" width="624" alt="3 Funktionen: Telefon, E-Mail, Website." style="width:100%; max-width:624px; height:auto; display:block; border-radius:16px;">
             </td>
+          </tr>
+
+          <!-- Gradient Bridge -->
+          <tr>
+            <td style="background:linear-gradient(180deg,#010d24 0%,#0a1f45 40%,#eaf3fc 100%); height:40px; padding:0; line-height:0; font-size:0;">&#8203;</td>
           </tr>
 
           <!-- E-Mail Card -->
@@ -127,6 +193,7 @@
                         <td class="section-copy" valign="top">
                           <div class="h2" style="margin-top:0;">Nimm einfach, was du brauchst.</div>
                           <p class="p">Du musst nicht das komplette Paket nehmen. E-Mail und Website gibt es auch ohne Telefon-KI. Schau einfach, was dir heute am meisten hilft.</p>
+                          <p class="p" style="margin-top:14px; padding:12px 14px; background:#f0f7ff; border-radius:10px; border-left:3px solid #19c861; color:#334b68;">&#127381; Übrigens: Wer HalloPetra einem anderen Betrieb empfiehlt, wird dafür belohnt. Einfach auf diese Mail antworten.</p>
                           <p class="p" style="margin-top:18px;">Bis dann,<br><strong>Das HalloPetra Team</strong></p>
                         </td>
                       </tr>
