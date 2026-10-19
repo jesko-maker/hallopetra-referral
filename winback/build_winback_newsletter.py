@@ -139,7 +139,7 @@ def page(title, preheader, pill, h1a, h1b, sub, img, img_w, img_h, img_alt, card
 
 
 SIGN = (f'<p class="p" style="margin-top:18px;">Viele Grüße<br><strong style="color:#0f1a3c;">Jesko</strong><br>'
-        f'<span style="font-size:13px;color:#6c788f;">Mitgründer, HalloPetra</span></p>')
+        f'<span style="font-size:13px;color:#6c788f;">HalloPetra</span></p>')
 
 # ─────────────── 1: Anrufer haben aufgelegt ───────────────
 anrufer = page(
