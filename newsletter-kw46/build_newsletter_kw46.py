@@ -140,7 +140,7 @@ def fotw(title, text, where, after):
 
 html = page(
     title="Petra kommt aufs Handy",
-    preheader="In 10 Tagen startet die HalloPetra-App: sprechen, Eingang, Termin-Briefing. Jetzt auf die Warteliste.",
+    preheader="In 10 Tagen startet die HalloPetra-App. Ein erster Blick, und wie du als Erstes dabei bist.",
     pill="Bald &middot; Die HalloPetra-App",
     h1a="Petra kommt", h1b="aufs Handy",
     sub="Bald hast du Petra als App in der Hosentasche, auf der Baustelle genauso wie im Büro. Wer jetzt auf der Warteliste steht, ist als Erstes dabei.",
@@ -157,29 +157,19 @@ cards = [
 ]
 
 
-def app_item(num, title, text, last=False):
-    border = "" if last else "border-bottom:1px solid #e3e7f0;"
-    return (f'<tr><td width="44" valign="top" style="{F}font-size:15px;font-weight:800;color:#2b45d4;padding:16px 0;{border}">{num}</td>'
-            f'<td valign="top" style="padding:16px 0;{border}">'
-            f'<p style="{F}font-size:16px;line-height:22px;font-weight:800;color:#0f1a3c;margin:0 0 4px;">{title}</p>'
-            f'<p style="{F}font-size:14px;line-height:22px;color:#47546c;margin:0;">{text}</p></td></tr>')
+def teaser(title, text, last=False):
+    pad = "0" if last else "0 0 22px"
+    return (f'<p style="{F}font-size:19px;line-height:25px;font-weight:800;color:#0f1a3c;margin:0 0 4px;text-align:center;">{title}</p>'
+            f'<p style="{F}font-size:15px;line-height:23px;color:#6c788f;margin:{pad};text-align:center;">{text}</p>')
 
 
-app_items = "".join([
-    app_item("01", "Einfach mit Petra sprechen",
-             "Auf der Baustelle oder im Auto über die Freisprechanlage: Sag Petra, was zu tun ist. Sie trägt Termine ein, legt Aufgaben an, pflegt Kontakte und bereitet Nachrichten für dich vor."),
-    app_item("02", "Alles Neue an einem Ort",
-             "Anrufe, E-Mails und Kundenchats landen in einem Eingang. Mitschrift lesen, zurückrufen, als erledigt abhaken, alles mit einem Fingertipp."),
-    app_item("03", "Gut vorbereitet zum Kunden",
-             "Kurz vor deinem nächsten Termin zeigt dein Handy den Countdown. Ein Tipp auf „Briefing starten“, und Petra erzählt dir, was du über Kunde und Projekt wissen musst."),
-    app_item("04", "Schreiben, sprechen, Foto schicken",
-             "Frag Petra im Chat, sprich ihr eine Nachricht ein oder schick ein Foto von der Baustelle. Sie antwortet wie eine Kollegin aus dem Büro.", last=True),
-])
-
-cards.append(card(f'''                    {head_row("", "Das kann die App")}
-                    <p class="h2" style="margin:0 0 4px;">Dein Büro in der Hosentasche</p>
-                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 20px;">{app_items}</table>
-                    <p style="{F}font-size:15px;line-height:22px;margin:0;"><a href="{WAIT}" style="color:#2b45d4;font-weight:800;text-decoration:none;">Jetzt auf die Warteliste&nbsp;&#8594;</a></p>'''))
+cards.append(card(f'''                    <p style="{F}font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8b96ad;margin:0 0 10px;text-align:center;">Ein erster Blick</p>
+                    <p class="h2" style="margin:0 0 30px;text-align:center;font-size:28px;line-height:34px;">Dein Büro.<br>In der Hosentasche.</p>
+                    {teaser("Sprechen statt tippen.", "Sag Petra, was zu tun ist. Sie kümmert sich.")}
+                    {teaser("Alles im Blick.", "Was reinkommt, siehst du sofort. Wo immer du bist.")}
+                    {teaser("Vorbereitet, bevor du klingelst.", "Petra weiß, was beim nächsten Kunden ansteht.", last=True)}
+                    <p style="{F}font-size:15px;line-height:22px;color:#0f1a3c;margin:30px 0 6px;text-align:center;font-weight:700;">Und das ist erst der Anfang.</p>
+                    <p style="{F}font-size:15px;line-height:22px;margin:0;text-align:center;"><a href="{WAIT}" style="color:#2b45d4;font-weight:800;text-decoration:none;">Jetzt auf die Warteliste&nbsp;&#8594;</a></p>'''))
 
 html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
                     "".join(cards) + "          <!-- ═══════════════ FOOTER BAR ═══════════════ -->", 1)
@@ -206,9 +196,10 @@ def banner(bg, border, label, lcol, text, link, linktext, thumb=None):
 
 
 html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
-                    banner("#FFF4D1", "#F2DC92", "&#9733;&nbsp; Feature of the Week", "#8a6a00",
-                           "<strong style=\"color:#0f1a3c;\">Erinnerung im Kalender:</strong> Bucht Petra einen Termin, erinnert der Kalender deines Mitarbeiters jetzt vorher daran, 5 Minuten bis 2 Stunden, je Terminvorlage einstellbar.",
-                           f"{APP}/calendar", "Zum Kalender")
+                    fotw("Termine mit Erinnerung im Kalender",
+                         "Für jede Terminvorlage legst du jetzt fest, wann der Kalender deines Mitarbeiters vorher erinnert, von 5 Minuten bis 2 Stunden. Bucht Petra einen Termin, trägt sie die Erinnerung gleich mit ein, in Google, Outlook, Apple iCloud (Beta) oder TAIFUN.",
+                         "Kalender &#8594; Termine",
+                         "Terminvorlage öffnen, unter „Benachrichtigung“.")
                     + banner("#f7f8fd", "#dfe4f2", "Neu &middot; Ratgeber", "#2b45d4",
                              "<strong style=\"color:#0f1a3c;\">Zu jeder Funktion eine Anleitung,</strong> meist mit kurzem Film. Zum Einstieg: die neuen Anruf-Einstellungen in 90 Sekunden.",
                              f"{RG}/anrufe-einrichten", "Film ansehen", thumb="ratgeber-anrufe-thumb.jpg")
