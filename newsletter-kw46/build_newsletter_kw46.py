@@ -139,7 +139,7 @@ def fotw(title, text, where, after):
 
 html = page(
     title="Petra kommt aufs Handy",
-    preheader="In 10 Tagen startet die HalloPetra-App. Ein erster Blick, und wie du als Erstes dabei bist.",
+    preheader="In 10 Tagen startet die HalloPetra-App. Ein erster Blick auf das, was sie für dich tut.",
     pill="Bald &middot; Die HalloPetra-App",
     h1a="Petra kommt", h1b="aufs Handy",
     sub="Bald hast du Petra als App in der Hosentasche, auf der Baustelle genauso wie im Büro. Wer jetzt auf der Warteliste steht, ist als Erstes dabei.",
@@ -163,12 +163,14 @@ def teaser(title, text, last=False):
 
 
 cards.append(card(f'''                    <p style="{F}font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8b96ad;margin:0 0 10px;text-align:center;">Ein erster Blick</p>
-                    <p class="h2" style="margin:0 0 30px;text-align:center;font-size:28px;line-height:34px;">Dein Büro.<br>In der Hosentasche.</p>
-                    {teaser("Sprechen statt tippen.", "Sag Petra, was zu tun ist. Sie kümmert sich.")}
-                    {teaser("Alles im Blick.", "Was reinkommt, siehst du sofort. Wo immer du bist.")}
-                    {teaser("Vorbereitet, bevor du klingelst.", "Petra weiß, was beim nächsten Kunden ansteht.", last=True)}
-                    <p style="{F}font-size:15px;line-height:22px;color:#0f1a3c;margin:30px 0 6px;text-align:center;font-weight:700;">Und das ist erst der Anfang.</p>
-                    <p style="{F}font-size:15px;line-height:22px;margin:0;text-align:center;"><a href="{WAIT}" style="color:#2b45d4;font-weight:800;text-decoration:none;">Jetzt auf die Warteliste&nbsp;&#8594;</a></p>'''))
+                    <p class="h2" style="margin:0 0 18px;text-align:center;font-size:28px;line-height:34px;">Sag's einfach Petra.</p>
+                    <p style="{F}font-size:16px;line-height:26px;color:#47546c;margin:0 0 14px;">Du sitzt im Auto, die Hände am Lenkrad, und dir fällt ein: Der Termin morgen früh muss auf Donnerstag. Mit der App sagst du es einfach Petra, so wie du es einer Kollegin im Büro sagen würdest.</p>
+                    <p style="{F}font-size:16px;line-height:26px;color:#47546c;margin:0 0 26px;">Sie verschiebt den Termin, legt dir eine Aufgabe an oder bereitet eine Nachricht an den Kunden vor. Ohne Tippen, über die Freisprechanlage im Auto genauso wie auf der Baustelle.</p>
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="border-top:1px solid #e3e7f0;padding-top:20px;">
+                    <p style="{F}font-size:15px;line-height:22px;color:#0f1a3c;margin:0 0 6px;text-align:center;font-weight:700;">Und das ist erst der Anfang.</p>
+                    <p style="{F}font-size:15px;line-height:22px;color:#6c788f;margin:0 0 10px;text-align:center;">Was die App noch alles kann, zeigen wir dir in den nächsten Tagen.</p>
+                    <p style="{F}font-size:15px;line-height:22px;margin:0;text-align:center;"><a href="{WAIT}" style="color:#2b45d4;font-weight:800;text-decoration:none;">Jetzt auf die Warteliste&nbsp;&#8594;</a></p>
+                    </td></tr></table>'''))
 
 html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
                     "".join(cards) + "          <!-- ═══════════════ FOOTER BAR ═══════════════ -->", 1)
@@ -195,10 +197,7 @@ def banner(bg, border, label, lcol, text, link, linktext, thumb=None):
 
 
 html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
-                    fotw("Termine mit Erinnerung im Kalender",
-                         "Für jede Terminvorlage legst du jetzt fest, wann der Kalender deines Mitarbeiters vorher erinnert, von 5 Minuten bis 2 Stunden. Bucht Petra einen Termin, trägt sie die Erinnerung gleich mit ein, in Google, Outlook, Apple iCloud (Beta) oder TAIFUN.",
-                         "Kalender &#8594; Termine",
-                         "Terminvorlage öffnen, unter „Benachrichtigung“.")
+                    ""
                     + banner("#f7f8fd", "#dfe4f2", "Neu &middot; Ratgeber", "#2b45d4",
                              "<strong style=\"color:#0f1a3c;\">Zu jeder Funktion eine Anleitung,</strong> meist mit kurzem Film. Zum Einstieg: die neuen Anruf-Einstellungen in 90 Sekunden.",
                              f"{RG}/anrufe-einrichten", "Film ansehen", thumb="ratgeber-anrufe-thumb.jpg")
