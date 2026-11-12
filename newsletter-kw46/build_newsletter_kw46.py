@@ -19,8 +19,7 @@ WAIT = "https://tally.so/r/Kp5x4K?email={{{EMAIL}}}&amp;vorname={{{FIRST_NAME}}}
 RG = "https://www.hallopetra.de/ratgeber"
 
 SIGN = (f'<p class="p" style="margin-top:18px;">Viele Grüße<br>'
-        f'<strong style="color:#0f1a3c;">Jesko &amp; Hendric</strong><br>'
-        f'<span style="font-size:13px;color:#6c788f;">HalloPetra</span></p>')
+        f'<strong style="color:#0f1a3c;">Jesko</strong></p>')
 
 SHADOW = "box-shadow:0 1px 2px rgba(15,26,60,0.04),0 12px 32px rgba(15,26,60,0.06);"
 
