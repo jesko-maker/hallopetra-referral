@@ -78,7 +78,7 @@ days = "".join(
 countdown = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:6px 0 4px;">
                       <tr>
                         <td align="center" bgcolor="#2b45d4" style="font-size:0;line-height:0;">
-                          <img src="{RAW}countdown-lupe.png" width="620" height="210" alt="Noch 10 Tage bis zur HalloPetra-App" style="width:100%;max-width:620px;height:auto;display:block;color:#ffffff;font-size:28px;font-weight:bold;background-color:#2b45d4;">
+                          <img src="{RAW}countdown-lupe.png" width="620" height="210" alt="Noch 7 Tage bis zur HalloPetra-App" style="width:100%;max-width:620px;height:auto;display:block;color:#ffffff;font-size:28px;font-weight:bold;background-color:#2b45d4;">
                         </td>
                       </tr>
                     </table>
@@ -139,7 +139,7 @@ def fotw(title, text, where, after):
 
 html = page(
     title="Petra kommt aufs Handy",
-    preheader="In 10 Tagen startet die HalloPetra-App. Ein erster Blick auf das, was sie für dich tut.",
+    preheader="In 7 Tagen startet die HalloPetra-App. Ein erster Blick auf das, was sie für dich tut.",
     pill="Bald &middot; Die HalloPetra-App",
     h1a="Petra kommt", h1b="aufs Handy",
     sub="Bald hast du Petra als App in der Hosentasche, auf der Baustelle genauso wie im Büro. Wer jetzt auf der Warteliste steht, ist als Erstes dabei.",
@@ -164,6 +164,7 @@ def teaser(title, text, last=False):
 
 cards.append(card(f'''                    <p style="{F}font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8b96ad;margin:0 0 10px;text-align:center;">Ein erster Blick</p>
                     <p class="h2" style="margin:0 0 18px;text-align:center;font-size:28px;line-height:34px;">Sag's einfach Petra.</p>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin:0 auto 24px;"><tr><td style="border-radius:22px;box-shadow:0 14px 34px rgba(15,26,60,0.22);font-size:0;line-height:0;" bgcolor="#1d2f6e"><img src="{RAW}app-sprache-screen.jpg" width="300" height="581" alt="Die HalloPetra-App: Sprich mit Petra, auch aus dem Auto" style="width:300px;max-width:100%;height:auto;display:block;border-radius:22px;color:#0f1a3c;font-size:15px;font-weight:bold;background-color:#1d2f6e;"></td></tr></table>
                     <p style="{F}font-size:16px;line-height:26px;color:#47546c;margin:0 0 14px;">Du sitzt im Auto, die Hände am Lenkrad, und dir fällt ein: Der Termin morgen früh muss auf Donnerstag. Mit der App sagst du es einfach Petra, so wie du es einer Kollegin im Büro sagen würdest.</p>
                     <p style="{F}font-size:16px;line-height:26px;color:#47546c;margin:0 0 26px;">Sie verschiebt den Termin, legt dir eine Aufgabe an oder bereitet eine Nachricht an den Kunden vor. Ohne Tippen, über die Freisprechanlage im Auto genauso wie auf der Baustelle.</p>
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr><td style="border-top:1px solid #e3e7f0;padding-top:20px;">

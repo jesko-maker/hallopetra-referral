@@ -6,8 +6,8 @@ BLUE = (43, 69, 212)
 FB = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
 FR = "/System/Library/Fonts/Supplemental/Arial.ttf"
 CX, CY, R = 620, 210, 176
-NUMS = ["13", "12", "11", "10", "9", "8"]
-CENTER, LEFT, RIGHT, LABEL = "10", "11", "9", "TAGE"
+NUMS = ["10", "9", "8", "7", "6", "5"]
+CENTER, LEFT, RIGHT, LABEL = "7", "8", "6", "TAGE"
 GAPX = 250
 xs = [CX + (i - 3) * GAPX for i in range(len(NUMS))]
 
