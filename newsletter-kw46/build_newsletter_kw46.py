@@ -140,7 +140,7 @@ def fotw(title, text, where, after):
 
 html = page(
     title="Petra kommt aufs Handy",
-    preheader="In 10 Tagen startet die HalloPetra-App. Plus: unser neuer Ratgeber und das Feature of the Week.",
+    preheader="In 10 Tagen startet die HalloPetra-App: sprechen, Eingang, Termin-Briefing. Jetzt auf die Warteliste.",
     pill="Bald &middot; Die HalloPetra-App",
     h1a="Petra kommt", h1b="aufs Handy",
     sub="Bald hast du Petra als App in der Hosentasche, auf der Baustelle genauso wie im Büro. Wer jetzt auf der Warteliste steht, ist als Erstes dabei.",
@@ -150,39 +150,68 @@ html = page(
 cards = [
     card(f'''                    <p style="{F}font-size:13px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#c9d2fa;margin:0 0 4px;text-align:center;">Countdown</p>
                     {countdown}
-                    <p style="{F}font-size:15px;line-height:23px;color:#ffffff;margin:0 0 22px;text-align:center;">Mehr verraten wir noch nicht. Trag dich auf die Warteliste ein, dann meldet sich unser Kollege Leonard persönlich bei dir. Wenn du magst, bestellst du die App dort gleich vor und hast sie zum Start sofort auf dem Handy.</p>
+                    <p style="{F}font-size:15px;line-height:23px;color:#ffffff;margin:0 0 22px;text-align:center;">Trag dich jetzt auf die Warteliste ein, dann meldet sich unser Kollege Leonard persönlich bei dir. Wenn du magst, bestellst du die App dort gleich vor und hast sie zum Start sofort auf dem Handy.</p>
                     {white_button}
                     <p style="{F}font-size:13px;line-height:20px;color:#c9d2fa;margin:12px 0 0;text-align:center;">Ein Klick genügt, deine Daten sind schon eingetragen.</p>
                     <p style="{F}font-size:13px;line-height:20px;color:#c9d2fa;margin:18px 0 0;text-align:center;border-top:1px solid #4a61dc;padding-top:16px;"><strong style="color:#ffffff;">Gut zu wissen:</strong> Die App gehört zu Petra 2.0. Vorbestellen heißt also, dass du auf Petra 2.0 umsteigst. Das bespricht Leonard mit dir, oder du wechselst gleich selbst <a href="https://app.hallopetra.de/dashboard/account?tab=subscription&amp;pool=switch" style="color:#ffffff;font-weight:700;text-decoration:none;border-bottom:1px solid #ffffff;">in deinem Konto</a>.</p>''', bg="#2b45d4", shadow="box-shadow:0 18px 40px rgba(43,69,212,0.28);"),
 ]
+
+
+def app_item(num, title, text, last=False):
+    border = "" if last else "border-bottom:1px solid #e3e7f0;"
+    return (f'<tr><td width="44" valign="top" style="{F}font-size:15px;font-weight:800;color:#2b45d4;padding:16px 0;{border}">{num}</td>'
+            f'<td valign="top" style="padding:16px 0;{border}">'
+            f'<p style="{F}font-size:16px;line-height:22px;font-weight:800;color:#0f1a3c;margin:0 0 4px;">{title}</p>'
+            f'<p style="{F}font-size:14px;line-height:22px;color:#47546c;margin:0;">{text}</p></td></tr>')
+
+
+app_items = "".join([
+    app_item("01", "Einfach mit Petra sprechen",
+             "Auf der Baustelle oder im Auto über die Freisprechanlage: Sag Petra, was zu tun ist. Sie trägt Termine ein, legt Aufgaben an, pflegt Kontakte und bereitet Nachrichten für dich vor."),
+    app_item("02", "Alles Neue an einem Ort",
+             "Anrufe, E-Mails und Kundenchats landen in einem Eingang. Mitschrift lesen, zurückrufen, als erledigt abhaken, alles mit einem Fingertipp."),
+    app_item("03", "Gut vorbereitet zum Kunden",
+             "Kurz vor deinem nächsten Termin zeigt dein Handy den Countdown. Ein Tipp auf „Briefing starten“, und Petra erzählt dir, was du über Kunde und Projekt wissen musst."),
+    app_item("04", "Schreiben, sprechen, Foto schicken",
+             "Frag Petra im Chat, sprich ihr eine Nachricht ein oder schick ein Foto von der Baustelle. Sie antwortet wie eine Kollegin aus dem Büro.", last=True),
+])
+
+cards.append(card(f'''                    {head_row("", "Das kann die App")}
+                    <p class="h2" style="margin:0 0 4px;">Dein Büro in der Hosentasche</p>
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 20px;">{app_items}</table>
+                    <p style="{F}font-size:15px;line-height:22px;margin:0;"><a href="{WAIT}" style="color:#2b45d4;font-weight:800;text-decoration:none;">Jetzt auf die Warteliste&nbsp;&#8594;</a></p>'''))
+
 html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
                     "".join(cards) + "          <!-- ═══════════════ FOOTER BAR ═══════════════ -->", 1)
 
-ratgeber = f'''          <!-- ═══════════════ RATGEBER (mittel, mit Film) ═══════════════ -->
-          <tr>
-            <td class="mob-pad" style="background:#eef1fb;padding:0 16px 18px;" bgcolor="#eef1fb">
-              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-radius:22px;" bgcolor="#ffffff">
+
+def banner(bg, border, label, lcol, text, link, linktext, thumb=None):
+    img = (f'<td width="112" valign="middle" style="padding-right:14px;" class="hide-mob"><a href="{link}"><img src="{RAW}{thumb}" width="112" height="63" alt="Film ansehen" style="width:112px;height:63px;display:block;border-radius:8px;"></a></td>'
+           if thumb else "")
+    return f'''          <tr>
+            <td class="mob-pad" style="background:#eef1fb;padding:0 16px 12px;" bgcolor="#eef1fb">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border-radius:16px;" bgcolor="{bg}">
                 <tr>
-                  <td class="px28" style="background:#ffffff;padding-top:24px;padding-bottom:22px;border-radius:22px;" bgcolor="#ffffff">
-                    <p style="{F}font-size:12px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:#2b45d4;margin:0 0 6px;">Neu &middot; Ratgeber</p>
-                    <p class="h2" style="margin:0 0 8px;">Zu jeder Funktion eine Anleitung</p>
-                    <p class="p" style="margin:0 0 16px;">Im neuen Ratgeber findest du zu allem, was Petra kann, eine Schritt-für-Schritt-Anleitung, meist mit kurzem Film. Unser Tipp zum Einstieg: die neuen Anruf-Einstellungen in 90 Sekunden.</p>
-                    {video}
-                    <p style="{F}font-size:14px;line-height:22px;margin:0;"><a href="{RG}/anrufe-einrichten" style="color:#2b45d4;font-weight:800;text-decoration:none;">Film ansehen&nbsp;&#8594;</a>&nbsp;&nbsp;<span style="color:#b7c0d6;">|</span>&nbsp;&nbsp;<a href="{RG}" style="color:#47546c;font-weight:700;text-decoration:none;">Zum Ratgeber</a></p>
+                  <td style="background:{bg};padding:14px 18px;border-radius:16px;border:1px solid {border};" bgcolor="{bg}">
+                    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"><tr>{img}
+                      <td valign="middle"><p style="{F}font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:{lcol};margin:0 0 4px;">{label}</p>
+                      <p style="{F}font-size:14px;line-height:21px;color:#47546c;margin:0;">{text} <a href="{link}" style="color:#0f1a3c;font-weight:700;text-decoration:none;border-bottom:1px solid #0f1a3c;">{linktext}</a>&nbsp;&#8594;</p></td>
+                    </tr></table>
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 '''
-html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
-                    ratgeber + "          <!-- ═══════════════ FOOTER BAR ═══════════════ -->", 1)
+
 
 html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
-                    fotw("Termine mit Erinnerung im Kalender",
-                         "Für jede Terminvorlage legst du jetzt fest, wann der Kalender deines Mitarbeiters vorher erinnert, von 5 Minuten bis 2 Stunden. Bucht Petra einen Termin, trägt sie die Erinnerung gleich mit ein, in Google, Outlook, Apple iCloud (Beta) oder TAIFUN.",
-                         "Kalender &#8594; Termine",
-                         "Terminvorlage öffnen, unter „Benachrichtigung“.")
+                    banner("#FFF4D1", "#F2DC92", "&#9733;&nbsp; Feature of the Week", "#8a6a00",
+                           "<strong style=\"color:#0f1a3c;\">Erinnerung im Kalender:</strong> Bucht Petra einen Termin, erinnert der Kalender deines Mitarbeiters jetzt vorher daran, 5 Minuten bis 2 Stunden, je Terminvorlage einstellbar.",
+                           f"{APP}/calendar", "Zum Kalender")
+                    + banner("#f7f8fd", "#dfe4f2", "Neu &middot; Ratgeber", "#2b45d4",
+                             "<strong style=\"color:#0f1a3c;\">Zu jeder Funktion eine Anleitung,</strong> meist mit kurzem Film. Zum Einstieg: die neuen Anruf-Einstellungen in 90 Sekunden.",
+                             f"{RG}/anrufe-einrichten", "Film ansehen", thumb="ratgeber-anrufe-thumb.jpg")
                     + "          <!-- ═══════════════ FOOTER BAR ═══════════════ -->", 1)
 
 html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
