@@ -79,7 +79,7 @@ days = "".join(
 countdown = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:6px 0 4px;">
                       <tr>
                         <td align="center" bgcolor="#2b45d4" style="font-size:0;line-height:0;">
-                          <img src="{RAW}countdown-lupe.png" width="620" height="210" alt="Noch 2 Wochen bis zur HalloPetra-App" style="width:100%;max-width:620px;height:auto;display:block;color:#ffffff;font-size:28px;font-weight:bold;background-color:#2b45d4;">
+                          <img src="{RAW}countdown-lupe.png" width="620" height="210" alt="Noch 10 Tage bis zur HalloPetra-App" style="width:100%;max-width:620px;height:auto;display:block;color:#ffffff;font-size:28px;font-weight:bold;background-color:#2b45d4;">
                         </td>
                       </tr>
                     </table>
@@ -140,7 +140,7 @@ def fotw(title, text, where, after):
 
 html = page(
     title="Petra kommt aufs Handy",
-    preheader="In zwei Wochen startet die HalloPetra-App. Plus: Petra im Chat und das Feature of the Week.",
+    preheader="In 10 Tagen startet die HalloPetra-App. Plus: unser neuer Ratgeber und das Feature of the Week.",
     pill="Bald &middot; Die HalloPetra-App",
     h1a="Petra kommt", h1b="aufs Handy",
     sub="Bald hast du Petra als App in der Hosentasche, auf der Baustelle genauso wie im Büro. Wer jetzt auf der Warteliste steht, ist als Erstes dabei.",
@@ -150,17 +150,9 @@ html = page(
 cards = [
     card(f'''                    <p style="{F}font-size:13px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#c9d2fa;margin:0 0 4px;text-align:center;">Countdown</p>
                     {countdown}
-                    <p style="{F}font-size:15px;line-height:23px;color:#ffffff;margin:0 0 22px;text-align:center;">Mehr verraten wir noch nicht. Trag dich auf die Warteliste ein, dann meldet sich unser Kollege Leonard persönlich bei dir, sobald die App da ist.</p>
+                    <p style="{F}font-size:15px;line-height:23px;color:#ffffff;margin:0 0 22px;text-align:center;">Mehr verraten wir noch nicht. Trag dich auf die Warteliste ein, dann meldet sich unser Kollege Leonard persönlich bei dir. Wenn du magst, bestellst du die App dort gleich vor und hast sie zum Start sofort auf dem Handy.</p>
                     {white_button}
                     <p style="{F}font-size:13px;line-height:20px;color:#c9d2fa;margin:12px 0 0;text-align:center;">Ein Klick genügt, deine Daten sind schon eingetragen.</p>''', bg="#2b45d4", shadow="box-shadow:0 18px 40px rgba(43,69,212,0.28);"),
-    card(f'''                    {head_row("", "Außerdem neu &middot; Petra im Chat", "#0f1a3c")}
-                    <p style="{F}font-size:30px;line-height:35px;font-weight:800;letter-spacing:-0.6px;color:#0f1a3c;margin:0 0 12px;">Wie ChatGPT,<br>nur mit <span style="color:#0f9d63;">deinem Betrieb im&nbsp;Kopf</span></p>
-                    <p class="p" style="margin-bottom:18px;"><strong style="color:#0f1a3c;">Petra kennt deine Kunden, deine Termine und dein Wissen.</strong> Frag sie im Dashboard einfach wie eine Kollegin.</p>
-                    {chat}
-                    {note("Mit TAIFUN verbunden?", "Dann findet Petra im Chat Kunden, Aufträge, Angebote, Rechnungen und Artikel. Soll sie dort etwas anlegen, fragt sie dich vorher.")}
-                    <p class="p" style="margin-bottom:12px;">Mit <strong style="color:#0f1a3c;">Chat Petra</strong> wählst du zusätzlich die Modelle hinter ChatGPT, Claude und Gemini. Jedes kennt deinen Betrieb genauso gut. Petra schreibt dir dann Angebote als PDF mit deinem Logo oder Materiallisten als Excel, und du teilst Chats mit deinem Büro.</p>
-                    <p style="{F}font-size:14px;line-height:20px;margin:0;"><a href="{RG}/chat-petra" style="color:#0f1a3c;font-weight:800;text-decoration:none;border-bottom:1px solid #0f1a3c;">Anleitung zu Chat Petra</a>&nbsp;<span style="color:#0f1a3c;">&#8594;</span></p>
-                    {SIGN}'''),
 ]
 html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
                     "".join(cards) + "          <!-- ═══════════════ FOOTER BAR ═══════════════ -->", 1)
@@ -188,6 +180,9 @@ html = html.replace("          <!-- ══════════════�
                          "Terminvorlage öffnen, unter „Benachrichtigung“.")
                     + "          <!-- ═══════════════ FOOTER BAR ═══════════════ -->", 1)
 
+html = html.replace("          <!-- ═══════════════ FOOTER BAR ═══════════════ -->",
+                    f'''          <tr><td class="mob-pad px28" style="background:#eef1fb;padding:4px 46px 18px;" bgcolor="#eef1fb">{SIGN}</td></tr>
+''' + "          <!-- ═══════════════ FOOTER BAR ═══════════════ -->", 1)
 html = html.replace("<strong>Lieber erst schreiben?</strong> Antworte einfach auf diese Mail, ich lese jede Antwort persönlich.",
                     "<strong>Fragen?</strong> Antworte einfach auf diese Mail, wir lesen jede Antwort persönlich.")
 html = html.replace("&#128172;&nbsp; <strong>Fragen?</strong>", "<strong>Fragen?</strong>")

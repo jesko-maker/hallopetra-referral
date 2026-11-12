@@ -6,8 +6,9 @@ BLUE = (43, 69, 212)
 FB = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
 FR = "/System/Library/Fonts/Supplemental/Arial.ttf"
 CX, CY, R = 620, 210, 176
-NUMS = ["5", "4", "3", "2", "1", "0"]
-GAPX = 210
+NUMS = ["13", "12", "11", "10", "9", "8"]
+CENTER, LEFT, RIGHT, LABEL = "10", "11", "9", "TAGE"
+GAPX = 250
 xs = [CX + (i - 3) * GAPX for i in range(len(NUMS))]
 
 def dial(scale=1.0, alpha=70, bold_center=False):
@@ -17,7 +18,7 @@ def dial(scale=1.0, alpha=70, bold_center=False):
     f = ImageFont.truetype(FB, int(150 * scale))
     for n, x in zip(NUMS, xs):
         x2 = CX + (x - CX) * scale
-        a = 255 if (bold_center and n == "2") else alpha
+        a = 255 if (bold_center and n == CENTER) else alpha
         d.text((x2, CY - 8 * scale), n, font=f, fill=(255, 255, 255, a), anchor="mm")
     # feine Skala unter den Zahlen
     for i in range(-60, 61):
@@ -54,15 +55,15 @@ for y in range(H):  # leichter Verlauf, oben heller
     ig.line([(0, y), (W, y)], fill=c + (255,))
 mag = inner_bg
 dd = ImageDraw.Draw(mag)
-fbig = ImageFont.truetype(FB, 200)
-dd.text((CX, CY - 24), "2", font=fbig, fill=(255, 255, 255, 255), anchor="mm")
-for n, dx in (("3", -170), ("1", 170)):
+fbig = ImageFont.truetype(FB, 180)
+dd.text((CX, CY - 24), CENTER, font=fbig, fill=(255, 255, 255, 255), anchor="mm")
+for n, dx in ((LEFT, -235), (RIGHT, 215)):
     dd.text((CX + dx, CY - 24), n, font=fbig, fill=(255, 255, 255, 120), anchor="mm")
 for i in range(-20, 21):
     x = CX + i * 32
     big = i % 5 == 0
     dd.line([(x, CY + 128), (x, CY + 128 + (26 if big else 12))], fill=(255, 255, 255, 140 if big else 70), width=3)
-dd.text((CX, CY + 96), "WOCHEN", font=ImageFont.truetype(FB, 28), fill=(255, 255, 255, 240), anchor="mm")
+dd.text((CX, CY + 96), LABEL, font=ImageFont.truetype(FB, 28), fill=(255, 255, 255, 240), anchor="mm")
 blurred = mag.filter(ImageFilter.GaussianBlur(10))
 # Maske: Mitte scharf -> Rand weich
 m = Image.new("L", (W, H), 0)
