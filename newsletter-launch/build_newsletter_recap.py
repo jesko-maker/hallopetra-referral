@@ -42,7 +42,7 @@ assert _sp in html
 visual = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 24px;">
                       <tr>
                         <td align="center" bgcolor="#1d2f8a" style="border-radius:18px;font-size:0;line-height:0;">
-                          <img src="{RAW}recap-petra-stimmen.jpg" width="620" height="410" alt="Petra staunt über die App. Dahinter: eine Bewertung aus dem App Store, 4,3 Sterne, 50+ Betriebe direkt in der App gewechselt, 200+ Betriebe auf Petra 2.0" style="width:100%;max-width:620px;height:auto;display:block;border-radius:18px;color:#ffffff;font-size:22px;font-weight:bold;background-color:#1d2f8a;">
+                          <img src="{RAW}recap-petra-stimmen.jpg" width="620" height="410" alt="Petra staunt über die App. Dazu: 4,3 Sterne im App Store, 50+ Betriebe direkt in der App gewechselt, 200+ Betriebe auf Petra 2.0" style="width:100%;max-width:620px;height:auto;display:block;border-radius:18px;color:#ffffff;font-size:22px;font-weight:bold;background-color:#1d2f8a;">
                         </td>
                       </tr>
                     </table>'''
@@ -50,6 +50,35 @@ visual = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding
 stats = (f'<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 24px;"><tr>'
          f'{stat("200+", "Betriebe auf Petra 2.0", False)}{stat("50+", "direkt in der App gewechselt")}{stat("4,3&nbsp;&#9733;", "im App Store")}'
          f'</tr></table>')
+
+
+def testi(avatar, name, meta, text, stars=False, last=False):
+    st = f'<span style="color:#FFB500;letter-spacing:1px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>&nbsp; ' if stars else ""
+    return f'''<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 {"0" if last else "12px"};border-radius:18px;" bgcolor="#f3f5fc">
+                      <tr><td style="padding:20px 20px 18px;background:#f3f5fc;border-radius:18px;" bgcolor="#f3f5fc">
+                        <p style="{F}font-size:16px;line-height:25px;color:#0f1a3c;margin:0 0 14px;font-weight:700;">&#8222;{text}&#8220;</p>
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr>
+                          <td valign="middle" style="padding-right:12px;font-size:0;line-height:0;">{avatar}</td>
+                          <td valign="middle"><p style="{F}font-size:14px;line-height:18px;color:#0f1a3c;margin:0;font-weight:800;">{name}</p>
+                          <p style="{F}font-size:12px;line-height:18px;color:#6c788f;margin:2px 0 0;">{st}{meta}</p></td>
+                        </tr></table>
+                      </td></tr>
+                    </table>'''
+
+
+def anon(letter="&#8222;"):
+    return (f'<table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td width="40" height="40" align="center" valign="middle" '
+            f'style="width:40px;height:40px;border-radius:50%;background:#d5ddfb;{F}font-size:20px;line-height:20px;font-weight:800;color:#2b45d4;" bgcolor="#d5ddfb">{letter}</td></tr></table>')
+
+
+KUHL_LOGO = f'<img src="{RAW}kuhlmann-logo.png" width="40" height="40" alt="Kuhlmann Gebäudetechnik" style="width:40px;height:40px;border-radius:10px;display:block;">'
+voices = (f'<p style="{F}font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8b96ad;margin:26px 0 14px;text-align:center;">Das sagen die ersten Nutzer</p>'
+          + testi(KUHL_LOGO, "Kuhlmann Gebäudetechnik", "Bewertung im App Store",
+                  "Potenzial ohne Ende. Wirklich eine perfekte Ergänzung zur ohnehin genialen Petra. Besonders muss ich das Team loben, welches schnell reagiert und verbessert, in einem super Tempo. Das hat richtig Potenzial und hat unseren Alltag verbessert.", stars=True)
+          + testi(anon(), "Inhaber eines Handwerksbetriebs", "per E-Mail an uns",
+                  "Endlich die App! Das war das Puzzlestück, das mir immer gefehlt hat. Ich bin ständig auf der Baustelle und im Auto unterwegs und konnte mich da nie ins Dashboard einloggen. Mit der einfachen Oberfläche auf dem Handy hilft das ungemein.")
+          + testi(anon(), "Kunde von HalloPetra", "per E-Mail an uns",
+                  "Genau diese Entwicklung hatten wir uns von Petra gewünscht. Vielen Dank!", last=True))
 
 quote = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0;border-radius:18px;" bgcolor="#f3f5fc">
                       <tr><td style="padding:22px 22px 20px;background:#f3f5fc;border-radius:18px;" bgcolor="#f3f5fc">
@@ -61,9 +90,10 @@ quote = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding=
 
 cards = [
     card(f'''                    <p style="{F}font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8b96ad;margin:0 0 10px;text-align:center;">Die ersten Tage</p>
-                    <p class="h2" style="margin:0 0 20px;text-align:center;font-size:28px;line-height:34px;">Das sagen die ersten Nutzer.</p>
+                    <p class="h2" style="margin:0 0 20px;text-align:center;font-size:28px;line-height:34px;">Da ist richtig was los.</p>
                     {visual}
-                    <p class="p" style="margin:0;">Seit dem Start sind über 200 Betriebe auf Petra 2.0 umgestiegen, über 50 davon direkt in der App. Und im App Store sind die ersten Bewertungen eingegangen.</p>
+                    <p class="p" style="margin:0;">Seit dem Start sind über 200 Betriebe auf Petra 2.0 umgestiegen, über 50 davon direkt in der App. Und die ersten Rückmeldungen sind da.</p>
+                    {voices}
 '''),
     card(f'''                    <p style="{F}font-size:13px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#c9d2fa;margin:0 0 10px;text-align:center;">Noch nicht dabei?</p>
                     <p class="h2" style="margin:0 0 10px;text-align:center;color:#ffffff;font-size:28px;line-height:34px;">Hol dir Petra aufs Handy.</p>
