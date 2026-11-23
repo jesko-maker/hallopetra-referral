@@ -21,11 +21,11 @@ AND = "https://play.google.com/store/apps/details?id=de.hallopetra.app"
 SWITCH = "https://app.hallopetra.de/dashboard/account?tab=subscription&amp;pool=switch"
 
 html = page(
-    title="Die HalloPetra-App kommt an",
-    preheader="Über 200 Betriebe sind schon auf Petra 2.0, und die ersten Bewertungen sind da.",
-    pill="Eine Woche App &middot; HalloPetra",
-    h1a="Die App", h1b="kommt an.",
-    sub="Vor ein paar Tagen ist die HalloPetra-App gestartet. Seitdem ist eine Menge passiert. Hier ist ein kurzer Blick auf die ersten Tage.",
+    title="Schon gesehen? Die HalloPetra-App ist seit letzter Woche draußen",
+    preheader="Und das sagen die ersten Nutzer.",
+    pill="Seit letzter Woche &middot; Die HalloPetra-App",
+    h1a="Schon gesehen?", h1b="Die App ist da.",
+    sub="Seit letzter Woche ist die HalloPetra-App draußen. Seitdem ist eine Menge passiert. Hier ist, was die ersten Nutzer sagen.",
     img="recap-hero-klein.jpg", img_w=230, img_h=202, img_alt="Petra hält die HalloPetra-App in die Kamera",
     cards=[])
 
@@ -61,7 +61,7 @@ quote = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding=
 
 cards = [
     card(f'''                    <p style="{F}font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8b96ad;margin:0 0 10px;text-align:center;">Die ersten Tage</p>
-                    <p class="h2" style="margin:0 0 20px;text-align:center;font-size:28px;line-height:34px;">Da ist richtig was los.</p>
+                    <p class="h2" style="margin:0 0 20px;text-align:center;font-size:28px;line-height:34px;">Das sagen die ersten Nutzer.</p>
                     {visual}
                     <p class="p" style="margin:0;">Seit dem Start sind über 200 Betriebe auf Petra 2.0 umgestiegen, über 50 davon direkt in der App. Und im App Store sind die ersten Bewertungen eingegangen.</p>
 '''),
