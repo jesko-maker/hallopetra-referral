@@ -42,7 +42,7 @@ assert _sp in html
 visual = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 24px;">
                       <tr>
                         <td align="center" bgcolor="#1d2f8a" style="border-radius:18px;font-size:0;line-height:0;">
-                          <img src="{RAW}recap-petra-stimmen.jpg" width="620" height="410" alt="Petra staunt über die App. Dazu: 4,3 Sterne im App Store, 50+ Betriebe direkt in der App gewechselt, 200+ Betriebe auf Petra 2.0" style="width:100%;max-width:620px;height:auto;display:block;border-radius:18px;color:#ffffff;font-size:22px;font-weight:bold;background-color:#1d2f8a;">
+                          <img src="{RAW}recap-petra-stimmen.jpg" width="620" height="410" alt="Petra staunt über die App. Dazu: 50+ Betriebe direkt in der App gewechselt, 200+ Betriebe auf Petra 2.0" style="width:100%;max-width:620px;height:auto;display:block;border-radius:18px;color:#ffffff;font-size:22px;font-weight:bold;background-color:#1d2f8a;">
                         </td>
                       </tr>
                     </table>'''
@@ -72,7 +72,7 @@ def anon(letter="&#8222;"):
 
 
 KUHL_LOGO = f'<img src="{RAW}kuhlmann-logo.png" width="40" height="40" alt="Kuhlmann Gebäudetechnik" style="width:40px;height:40px;border-radius:10px;display:block;">'
-voices = (f'<p style="{F}font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8b96ad;margin:26px 0 14px;text-align:center;">Das sagen die ersten Nutzer</p>'
+voices = ('<div style="height:22px;line-height:22px;font-size:0;">&nbsp;</div>'
           + testi(KUHL_LOGO, "Kuhlmann Gebäudetechnik", "Bewertung im App Store",
                   "Potenzial ohne Ende. Wirklich eine perfekte Ergänzung zur ohnehin genialen Petra. Besonders muss ich das Team loben, welches schnell reagiert und verbessert, in einem super Tempo. Das hat richtig Potenzial und hat unseren Alltag verbessert.", stars=True)
           + testi(anon(), "Inhaber eines Handwerksbetriebs", "per E-Mail an uns",
@@ -90,7 +90,7 @@ quote = f'''<table role="presentation" width="100%" cellspacing="0" cellpadding=
 
 cards = [
     card(f'''                    <p style="{F}font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#8b96ad;margin:0 0 10px;text-align:center;">Die ersten Tage</p>
-                    <p class="h2" style="margin:0 0 20px;text-align:center;font-size:28px;line-height:34px;">Da ist richtig was los.</p>
+                    <p class="h2" style="margin:0 0 20px;text-align:center;font-size:28px;line-height:34px;">Das sagen die ersten Nutzer.</p>
                     {visual}
                     <p class="p" style="margin:0;">Seit dem Start sind über 200 Betriebe auf Petra 2.0 umgestiegen, über 50 davon direkt in der App. Und die ersten Rückmeldungen sind da.</p>
                     {voices}

@@ -101,8 +101,7 @@ def stat_card(big, line1, line2, w=330, bg=(255, 255, 255, 255), fg=(15, 26, 60)
 
 
 # Karten hinter Petra: ein Zitat (wörtlich, Bewertung vom 17.11.) + echte Zahlen
-place(stat_card("4,3", "Sterne im", "App Store", star=True), 225, 200, 5)
-place(stat_card("50+", "Betriebe direkt in", "der App gewechselt", w=340), 205, 560, -4)
+place(stat_card("50+", "Betriebe direkt in", "der App gewechselt", w=340), 215, 300, 5)
 
 # Petra vorne, unten mittig
 p = Image.open(os.path.join(HERE, "petra-verzaubert-raw.png")).convert("RGBA")
@@ -124,7 +123,7 @@ dn.rounded_rectangle([0, 0, 359, 229], radius=26, fill=(18, 185, 129, 255))
 dn.text((30, 22), "200+", font=font(FBL, 92), fill=(255, 255, 255))
 dn.text((32, 136), "Betriebe sind schon", font=font(FB, 27), fill=(255, 255, 255))
 dn.text((32, 172), "auf Petra 2.0", font=font(FB, 27), fill=(255, 255, 255))
-place(num, 1040, 330, -4)
+place(num, 1030, 420, -4)
 
 img.convert("RGB").save(os.path.join(ROOT, "recap-petra-stimmen.jpg"), quality=88, optimize=True, progressive=True)
 print("ok", os.path.getsize(os.path.join(ROOT, "recap-petra-stimmen.jpg")))
